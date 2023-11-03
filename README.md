@@ -13,5 +13,5 @@ See course web page [Project: C++ Web Service](https://cmsc240-f23.github.io/pro
 
 ## Project Proposal
 
-We are going to catalog art pieces from the school's art (Harnett) musuem. We would separate them into different categories of art such as portraits, paintings, prints, and other built versions of art. 
+We are going to catalog art pieces from the school's art (Harnett) musuem. We would separate them into different categories of art such as portraits, paintings, prints, and other built versions of art. We could also catalog the exibits (rooms) themselves and what they have.
 
