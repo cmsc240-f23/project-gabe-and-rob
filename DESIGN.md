@@ -16,9 +16,20 @@ Should be able to browse and read information for art pieces and objects in stor
 As a manager of the museum, I want to know everything that my department has access to, where they are stored, and what their condition is. 
 
 ## List Of Resources
-Active exibits: different rooms, what each room holds. Object which would have the serial number, its current location, donor, and weight. Two different subclasses for object: artworks (variables listed): artist, location, type of artwork, date created, date of aquisition; gem-stones (variables): type of gem-stone, 
+Active exibits: different rooms, vector with what the exhibit holds, exhibit name. 
+Object which would have the serial number, its current location, donor, date of aquisition, and weight. Two different subclasses for object: artworks (variables listed): artist, type of artwork, date created; gem-stones (variables): type of gem-stone.
+Storage: has a long vector with a catalogue of what object are stored and ordered by serial number, the physical location of the storage unit, and how much capacity it has left?
 
 ## List of End Points
+ListAllObjects: HTTP://URMuseums, GET,  
+ListExhibitObjects: HTTP:// URMuseums/ExhibitName GET
+ListStorgeObjects: HTTP:// URMuseums/StorageName, GET
+ListObject: HTTP://URMuseums/ObjectSerial#, GET
+CreateObject: HTTP://URMuseums, POST
+MoveObject: HTTP://URMuseums/ObjectSerial#, PUT
+EditObjectINFO: HTTP://URMuseums/ObjectSerial#, PUT
+EditObjectSerial#: HTTP://URMuseums/ObjectSerial#, PUT
+RemoveObject: HTTP://UrMusuems/ObjectSerial#, DELETE
 
 
 ## UML Diagrams
