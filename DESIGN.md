@@ -10,14 +10,32 @@ The University of Richmond doesn't have a comprehensive database for their art m
 UR Museums and student workers of the museums and people who want to browse the catalog.
 
 ## Functional Requirements
-Should be able to browse and read information for art pieces and objects in storage in the University musueams. Should be able to store the objects seriall number. Where it is stored vs where it is right now. Description of the object. Where it came from. The condition of the objects.
+1. All Users should be able to browse and read information for art pieces and objects in storage in the University musueams. Should be able to store the objects serial number, where it is right now. Description of the object, where it came from, and the condition of the objects. The service shall return a `200 OK` return code.
+2. Authorized users should be able to create new objects for artworks, gemstones, exhibits or storage closets. The service will validate the format of data coming in, and check for authorization of the user. It will then return a `201 Created` or `403 Unauthorized`
+3. Authorized Users should be able to update objects with new information. The service should be able to identify which characteristics are going to be changed, validate the format of data coming in, and verify that the data is being updated by a authorized user. The Service will return a `200 OK` or `403 Unauthorized` along with a response body containing the new information
+4. Authorized Users should be able to delete objects once they leave the University. 
+   - The service shall return a `204 No Content` status code upon successful deletion.
+   - The service shall return a `403 Forbidden` status code if an unauthorized user attempts to delete a resource.
+5. The service shall implement comprehensive error handling to provide meaningful error messages and appropriate HTTP status codes to the client for all failed operations.
+   - The service shall return a `404 Not Found` status code when a requested resource cannot be located.
+   - The service shall return a `500 Internal Server Error` status code in the event of unexpected server-side errors.
 
 ## Use Case Description
-As a manager of the museum, I want to know everything that my department has access to, where they are stored, and what their condition is. 
+Exhibits:
+    1. Create(POST)
+        - As a museum curator, I want to be able to create a new Exhibit and fill it with objects
+    2. Read (Get)
+        - As a person visiting the museum, I want to know the exhibits name, what artworks it holds, and how long it will be there
+        - As a curator, I want to know what objects are curently active for organization
+    3. Update (Put)
+        - As a curator, I want to update information on artworks, such as if I update the object's serial number
+    
 
 ## List Of Resources
 Active exibits: different rooms, vector with what the exhibit holds, exhibit name. 
-Object which would have the serial number, its current location, donor, date of aquisition, and weight. Two different subclasses for object: artworks (variables listed): artist, type of artwork, date created; gem-stones (variables): type of gem-stone, and dimensions.
+Generic Object class which would have the serial number, its current location, donor, date of aquisition, and weight. Two different subclasses for object: 
+    artworks (variables listed): artist, type of artwork, date created; 
+    gem-stones (variables listed): type of gem-stone, and dimensions;
 Storage: has a long vector with a catalogue of what object are stored and ordered by serial number, the physical location of the storage unit, and how much capacity it has left?
 
 ## List of End Points
