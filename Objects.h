@@ -21,8 +21,8 @@ private:
     string location;
     string donor;
     string dateRetrieved;
-    int weight;
-
+    int weight; 
+ 
 
 
 

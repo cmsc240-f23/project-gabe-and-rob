@@ -6,7 +6,7 @@
 using namespace std;
 
 class Exibits
-{
+{ 
 public:
     Exibits();
     string getExibitName();
