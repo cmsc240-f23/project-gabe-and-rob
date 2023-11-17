@@ -22,13 +22,29 @@ UR Museums and student workers of the museums and people who want to browse the 
 
 ## Use Case Description
 Exhibits:
-    1. Create(POST)
-        - As a museum curator, I want to be able to create a new Exhibit and fill it with objects
-    2. Read (Get)
-        - As a person visiting the museum, I want to know the exhibits name, what artworks it holds, and how long it will be there
-        - As a curator, I want to know what objects are curently active for organization
-    3. Update (Put)
-        - As a curator, I want to update information on artworks, such as if I update the object's serial number
+1. Create(POST)
+    - As a museum curator, I want to be able to create a new Exhibit and fill it with objects
+2. Read (Get)
+    - As a person visiting the museum, I want to know the exhibits name, what artworks it holds, and how long it will be there
+    - As a curator, I want to know what objects are curently active for organization
+3. Update (PUT)
+    - As a curator, I want to update information on artworks, such as if I update the object's serial number
+4. Delete(DELETE)
+    - As a curator, if an object leaves my collection I want to be able to delete it from the records
+
+Storage
+1. Create(POST)
+    - As a museum curator, I want to be able to create a new Storage Facility and fill it with objects
+2. Read (Get)
+    - As a curator, I want to know what objects are curently in storage for organization.
+3. Update (PUT)
+    - As a curator, I want to update information on artworks, such as if I update the object's serial number
+4. Delete(DELETE)
+    - As a curator, if an object leaves my collection I want to be able to delete it from the records
+
+Artworks
+1. Create (POST)
+    - As a museum curator, if I get a new artpiece I want to 
     
 
 ## List Of Resources
