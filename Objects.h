@@ -7,21 +7,23 @@ using namespace std;
 class Objects
 {
 public:
-    Objects();
+    Objects() {}
+    Objects(string location, string donor, string dateRetrieved, int weight, int serialNum)
+        : location(location), donor(donor), dateRetrieved(dateRetrieved), weight(weight), serialNum(serialNum) { } 
     string moveObjects(string loc);
-    string getLocation();
-    string getDonor();
-    string getDateRetrieved();
-    int getWeight();
-    int getSerialNumber();
+    string getLocation() {return location;}
+    string getDonor() {return donor;}
+    string getDateRetrieved() {return dateRetrieved;}
+    int getWeight() {return weight;}
+    int getSerialNumber() {return serialNum;}
 
 
 private:
-    int serialNum;
     string location;
     string donor;
     string dateRetrieved;
     int weight; 
+    int serialNum;
  
 
 
