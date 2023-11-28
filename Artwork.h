@@ -2,7 +2,7 @@
 #define ARTWORK_H
 
 #include <iostream>
-
+#include "Objects.h"
 using namespace std;
 
 class Artwork
