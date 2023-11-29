@@ -55,8 +55,53 @@ Generic Object class which would have the serial number, its current location, d
 Storage: has a long vector with a catalogue of what object are stored and ordered by serial number, the physical location of the storage unit, and how much capacity it has left?
 
 ## List of End Points
+**General**
+GET
+    - api/
+    - Description: Print a list of all current storage areas and exhibits
+    - Response: 200OK. with a return list
+
+Search
+    - api/
+
+**Exhibits**
+1. GET
+    - api/exhibits
+    - Description: Print List of all the Object within the Exhibit, ordered by serial number, along with the exhibit information, including when it is open and where it is located.
+    - Response: 200 OK. with a returned list of Objects.
+
+2. GET
+    - api/exhibits/{serial #}
+    - Description: Return all of the information about a specific object within an exhibit
+    - Response: 200 OK. with all the information on a spcific object
+
+**Storage** 
+1. GET
+    - api/storage
+    - Description: Print List of all the Object within the Storage, ordered by serial number.
+    - Response: 200 OK. with a returned list of Objects
+
+2. GET
+    - api/storage/{serial #}
+    - Description: Return all of the information about a specific object within an exhibit
+    - Response: 200 OK, along with a printout of the Object's attributes
+
+**Object**
+1. GET
+    - api/object
+    - Description: Return all the objects within the Museum's collection, ordered by Serial#
+    - Response: 200 OK, along with a list of Objects
+
+2. Get
+    - api/object/{serial #}
+    - Description: Return all of the information about a specific object within the museum collection
+
+3. Search
+
+4. 
+
 ListAllObjects: HTTP://URMuseums, GET, Expected Response Body: Printed List of all the objects within the Museums, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
-ListExhibitObjects: HTTP:// URMuseums/ExhibitName, GET, Expected Response Body: Printed List of all the Object within the Exhibit, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
+ListExhibitObjects: HTTP:// URMuseums/ExhibitName, GET, Expected Response Body: Print List of all the Object within the Exhibit, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
 ListStorgeObjects: HTTP:// URMuseums/StorageName, GET, Expected Response Body: Printed List of all the Object within the storage Unit, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
 ListObject: HTTP://URMuseums/ObjectSerial#, GET, Print the details for a single object within the museum. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found.
 CreateObject: HTTP://URMuseums, POST, Request Body: Ideally, we want the user to have both authorization to create new objects, and input all the attributes of the New Object. The Response Body should be a copy of the new Object, with 201 Item Created. Errors: There could be a few, If the User does not meet the Authorization we will return a 401: Unauthorized, If the User does not give the correct amount of inputs, failing to create an object, we will return a 400: Bad Request
