@@ -96,9 +96,7 @@ Search
     - api/object/{serial #}
     - Description: Return all of the information about a specific object within the museum collection
 
-3. Search
-
-4. 
+3. 
 
 ListAllObjects: HTTP://URMuseums, GET, Expected Response Body: Printed List of all the objects within the Museums, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
 ListExhibitObjects: HTTP:// URMuseums/ExhibitName, GET, Expected Response Body: Print List of all the Object within the Exhibit, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
