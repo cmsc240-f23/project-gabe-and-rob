@@ -17,7 +17,7 @@ public:
     std::string getDateRetrieved();
     int getWeight();
     int getSerialNumber();
-    bool compare(Object)
+    bool compare(Object& object);
 
 
 private:
