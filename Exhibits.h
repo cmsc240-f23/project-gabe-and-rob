@@ -20,7 +20,7 @@ public:
 
 
 private:
-    string exibitName;
+    std::string exibitName;
     int idNum;
     vector<Objects> exibits;
 
