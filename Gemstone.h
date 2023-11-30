@@ -4,7 +4,7 @@
 #include <iostream>
 
 using namespace std;
-#include "Objects.h"
+#include "Object.h"
 
 class Gemstone
 {

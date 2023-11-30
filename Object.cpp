@@ -1,8 +1,8 @@
-#include "Objects.h"
+#include "Object.h"
 #include <iostream>
 using namespace std;
 
-Object()
+Object::Object()
 {
 
 }

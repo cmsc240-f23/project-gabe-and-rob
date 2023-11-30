@@ -3,8 +3,10 @@
 
 #include <vector>
 #include <iostream>
+#include <crow.h>
 #include "Object.h"
 using namespace std;
+
 
 class Storage
 {
@@ -13,16 +15,18 @@ public:
     Storage(crow::json::rvalue readValueJson);
 
     string getStorageName() const {return storageName; }
-    bool objectExists(vector<Objects> object);
-    bool addObject(vector<Objects> object);
-    bool removeObject(vector<Objects> object);
+    bool objectExists(vector<Object> object);
+    bool addObject(vector<Object> object);
+    bool removeObject(vector<Object> object);
     bool isEmpty();
-    int getID() const {return id; }
+    string getID() const {return id; }
 
+    crow::json::wvalue convertToJson();
+    void updateFromJson(crow::json::rvalue readValueJson);
 private:
     string storageName;
     string id;
-    vector<Objects> storedObject;
+    vector<Object> storedObject;
     
 
 

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Gemstone() {}
+Gemstone::Gemstone() {}
 
 string Gemstone::getType()
 {

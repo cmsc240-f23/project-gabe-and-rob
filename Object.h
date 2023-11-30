@@ -1,28 +1,29 @@
-#ifndef OBJECTS_H
-#define OBJECTS_H
+#ifndef OBJECT_H
+#define OBJECT_H
 #include <iostream>
 #include <vector>
-using namespace std;
+#include <string>
+
  
 class Object
 {
 public:
     Object();
-    Object(string location, string donor, string dateRetrieved, int weight, int serialNum)
+    Object(std::string location, std::string donor, std::string dateRetrieved, int weight, int serialNum)
         : location(location), donor(donor), dateRetrieved(dateRetrieved), weight(weight), serialNum(serialNum) { } 
-    string moveObjects(string loc);
-    string getLocation();
-    string getDonor();
-    string getDateRetrieved();
+    std::string moveObjects(std::string loc);
+    std::string getLocation();
+    std::string getDonor();
+    std::string getDateRetrieved();
     int getWeight();
     int getSerialNumber();
     bool compare(Object)
 
 
 private:
-    string location;
-    string donor;
-    string dateRetrieved;
+    std::string location;
+    std::string donor;
+    std::string dateRetrieved;
     int weight; 
     int serialNum;
  
