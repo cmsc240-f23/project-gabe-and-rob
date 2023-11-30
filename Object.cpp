@@ -2,38 +2,38 @@
 #include <iostream>
 using namespace std;
 
-Objects()
+Object()
 {
 
 }
 
-string Objects::moveObjects(string loc)
+string Object::moveObjects(string loc)
 {
     
 
 }
 
-string Objects::getLocation()
+string Object::getLocation()
 {
     return location;
 }
 
-string Objects::getDonor()
+string Object::getDonor()
 {
     return donor;
 }
 
-string Objects::getDateRetreived()
+string Object::getDateRetreived()
 {
     return dateRetreived;
 }
 
-int Objects::getWeight()
+int Object::getWeight()
 {
     return weight;
 }
 
-int Objects::getSerialNumber()
+int Object::getSerialNumber()
 {
     return serialNum;
 }

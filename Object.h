@@ -4,11 +4,11 @@
 #include <vector>
 using namespace std;
  
-class Objects
+class Object
 {
 public:
-    Objects();
-    Objects(string location, string donor, string dateRetrieved, int weight, int serialNum)
+    Object();
+    Object(string location, string donor, string dateRetrieved, int weight, int serialNum)
         : location(location), donor(donor), dateRetrieved(dateRetrieved), weight(weight), serialNum(serialNum) { } 
     string moveObjects(string loc);
     string getLocation();
@@ -16,6 +16,7 @@ public:
     string getDateRetrieved();
     int getWeight();
     int getSerialNumber();
+    bool compare(Object)
 
 
 private:

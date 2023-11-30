@@ -1,15 +1,15 @@
-#ifndef GEMSTONES_H
-#define GEMSTONES_H
+#ifndef GEMSTONE_H
+#define GEMSTONE_H
 
 #include <iostream>
 
 using namespace std;
 #include "Objects.h"
 
-class Gemstones
+class Gemstone
 {
 public:
-    Gemstones();
+    Gemstone();
     string getType();
     string getDimensions();
 

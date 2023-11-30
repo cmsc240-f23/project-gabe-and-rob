@@ -3,12 +3,12 @@
 #include <csignal>
 #include <string>
 #include "Artwork.h"
-#include "Exhibits.h"
-#include "Gemstones.h"
+#include "Exhibit.h"
+#include "Gemstone.h"
 #include "GenericAPI.h"
 #include "persistence.h"
 #include "Storage.h"
-#include "Objects.h"
+#include "Object.h"
 
 using namespace crow;
 using namespace std;
