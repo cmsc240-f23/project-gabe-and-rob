@@ -49,5 +49,5 @@ string Exhibit::getExhibitName()
 bool Exhibit::addObject(vector<Object> stored)
 {
     return true; 
-
+ 
 }
