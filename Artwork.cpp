@@ -19,7 +19,7 @@ crow::json::wvalue Artwork::convertToJson()
     writeJson["artist"]= artist;
     writeJson["typeOfWork"]= typeOfWork;
     writeJson["dateCreated"] = dateCreated; 
-    return writeJson
+    return writeJson;
 }
 
 void Artwork::updateFromJson(json::rvalue readValueJson)
