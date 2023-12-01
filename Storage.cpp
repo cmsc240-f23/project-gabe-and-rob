@@ -61,20 +61,26 @@ bool Storage::objectExists(Object& object)
 
 bool Storage::addObject(Object& object)
 {
+    if(!objectExixts(object))
+    {
+        return false;
+    }
+
+
     string serialNumber = object.getSerialNum();
     for(int i = 0; i < storedObjects.size(); i++)
     {
-        //if the object isn't in the storedObjects vector
-        if(!objectExists(object))
+       
+        
+        return false;
+        //add the object to the back
+        storedObjects.push_back(object);
+        Object storedObject = storedObjects.at(storedObjects.size() - 1);
+        if(serialNumber != storedObject.getSerialNum())
         {
-            //add the object to the back
-            storedObjects.push_back(object);
-            Object storedObject = storedObjects.at(storedObjects.size() - 1);
-            if(serialNumber != storedObject.getSerialNum())
-            {
-                return false;
-            }
+            return false;
         }
+        
     }
     //if the object does exist in the storedObjects vector
     return true;
