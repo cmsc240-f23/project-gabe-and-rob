@@ -38,7 +38,7 @@ void Storage::updateFromJson(json::rvalue readValueJson)
     storageName = readValueJson["storageName"].s();
 
     // Setting artists
-    for (json::rvalue objectReadValueJson: readValueJson["objects"])
+    for (json::rvalue objectReadValueJson: readValueJson["storedObjects"])
     {
         storedObjects.push_back(objectsMap.at(objectReadValueJson["serialNum"].s()));
     }
@@ -58,3 +58,40 @@ bool Storage::objectExists(Object& object)
     }
     return false;
 }
+
+bool Storage::addObject(Object& object)
+{
+    string serialNumber = object.getSerialNum();
+    for(int i = 0; i < storedObjects.size(); i++)
+    {
+        //if the object isn't in the storedObjects vector
+        if(!objectExists(object))
+        {
+            //add the object to the back
+            storedObjects.push_back(object);
+            Object storedObject = storedObjects.at(storedObjects.size() - 1);
+            if(serialNumber != storedObject.getSerialNum())
+            {
+                return false;
+            }
+        }
+    }
+    //if the object does exist in the storedObjects vector
+    return true;
+
+}
+
+bool Storage::removeObject(Object& object)
+{
+    string serialNumber = object.getSerialNum();
+
+    for(int i = 0; i < storedObjects.size(); i++)
+    {
+        // if(object == storedObjects.at(i))
+        // {
+        //     storedObjects.erase(i);
+        // }
+    }
+}
+
+

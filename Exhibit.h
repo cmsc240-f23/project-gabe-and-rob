@@ -1,28 +1,31 @@
-#ifndef EXHIBITS_H
-#define EXIBITS_H
+#ifndef EXHIBIT_H
+#define EXHIBIT_H
 #include <iostream>
 #include <vector>
+#include <crow.h>
 #include "Object.h"
 using namespace std;
 
-class Exibits
+class Exhibit
 { 
 public:
-    Exibits();
-    string getExibitName();
-    bool addObject(vector<Objects> stored);
+    Exhibit();
+    Exhibit(crow::json::rvalue readValueJson);
+    string getExhibitName();
+    bool addObject(vector<Object> stored);
     bool isEmpty();
-    bool removeObject(vector<Objects> stored);
+    bool removeObject(vector<Object> stored);
     int getID();
 
-
+    crow::json::wvalue convertToJson();
+    void updateFromJson(crow::json::rvalue readValueJson);
 
 
 
 private:
-    std::string exibitName;
+    string exhibitName;
     int idNum;
-    vector<Objects> exibits;
+    vector<Object> exhibits;
 
 
 
