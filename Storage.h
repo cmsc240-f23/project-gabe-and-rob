@@ -20,6 +20,7 @@ public:
     bool removeObject(Object& object);
     bool isEmpty();
     string getSerialNum() const {return serialNum; }
+    vector<Object> getStoredObjects() const{return storedObjects;}
 
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
@@ -27,9 +28,6 @@ private:
     string storageName;
     string serialNum;
     vector<Object> storedObjects;
-    
-
-
 };
 
 #endif
