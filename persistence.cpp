@@ -59,8 +59,8 @@ map<string, T> loadFromFile(string filename)
         // and add it to the data map.
         for (json::rvalue item : jsonReadValue) 
         {
-            T object{item};
-            data[object.getId()] = object;
+            T a_object{item};
+            data[a_object.getSerialNum()] = a_object;
         }
     }
     

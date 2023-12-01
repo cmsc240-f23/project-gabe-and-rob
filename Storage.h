@@ -15,18 +15,18 @@ public:
     Storage(crow::json::rvalue readValueJson);
 
     string getStorageName() const {return storageName; }
-    bool objectExists(vector<Object> object);
-    bool addObject(vector<Object> object);
-    bool removeObject(vector<Object> object);
+    bool objectExists(Object& object);
+    bool addObject(Object& object);
+    bool removeObject(Object& object);
     bool isEmpty();
-    string getID() const {return id; }
+    string getSerialNum() const {return serialNum; }
 
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
 private:
     string storageName;
-    string id;
-    vector<Object> storedObject;
+    string serialNum;
+    vector<Object> storedObjects;
     
 
 

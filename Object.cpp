@@ -1,16 +1,47 @@
 #include "Object.h"
 #include <iostream>
+#include <crow.h>
 using namespace std;
+using namespace crow;
 
 Object::Object()
 {
 
 }
 
+Object::Object(crow::json::rvalue readValueJson)  
+{
+    updateFromJson(readValueJson);
+}
+
+crow::json::wvalue Object::convertToJson() 
+{
+    json::wvalue writeJson;
+    writeJson["serialNum"] = serialNum;
+    writeJson["weight"] = weight;
+    writeJson["location"] = location;
+    writeJson["donor"] = donor;
+    writeJson["dateRetrieved"] = dateRetrieved; 
+
+    return writeJson;
+}
+
+// Update from JSON
+void Object::updateFromJson(crow::json::rvalue readValueJson) 
+{
+    serialNum = readValueJson["serialNum"].s();
+    weight = readValueJson["weight"].i();
+    location = readValueJson["location"].s();
+    donor = readValueJson["donor"].s();
+    dateRetrieved = readValueJson["dateRetrieved"].s();
+    
+}
+
+
 string Object::moveObjects(string loc)
 {
     
-
+    return "in progress";
 }
 
 string Object::getLocation()
@@ -33,7 +64,7 @@ int Object::getWeight()
     return weight;
 }
 
-int Object::getSerialNumber()
+std::string Object::getSerialNum()
 {
     return serialNum;
 }
@@ -60,12 +91,11 @@ bool Object::compare(Object& object)
         return false;
     }
 
-    if(object.getSerialNumber() != this->getSerialNumber())
+    if(object.getSerialNum() != this->getSerialNum())
     {
         return false;
     }
+
     return true;
     
-
-
 }

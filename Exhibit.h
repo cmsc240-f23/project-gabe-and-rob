@@ -2,7 +2,7 @@
 #define EXIBITS_H
 #include <iostream>
 #include <vector>
-#include "Objects.h"
+#include "Object.h"
 using namespace std;
 
 class Exibits

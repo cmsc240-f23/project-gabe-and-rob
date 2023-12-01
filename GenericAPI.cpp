@@ -8,6 +8,9 @@
  */
 
 #include <stdexcept>
+#include "GenericAPI.h"
+#include "Storage.h"
+#include "Object.h"
 
 using namespace std;
 using namespace crow;
@@ -42,7 +45,7 @@ response GenericAPI<T>::createResource(request req)
     T resource{readValueJson};
 
     // Add the new resource to the map.
-    resourceMap[resource.getId()] = resource;
+    resourceMap[resource.getSerialNum()] = resource;
 
     // Return the create resource as a JSON string.
     // 201 Created: The request succeeded, and a new resource was created as a result.
@@ -180,7 +183,8 @@ response GenericAPI<T>::deleteResource(string id)
 }
 
 // Explicit template instantiation
-template class GenericAPI<>;
-template class GenericAPI<>;
-template class GenericAPI<>;
-template class GenericAPI<>;
+template class GenericAPI<Object>;
+template class GenericAPI<Storage>;
+//template class GenericAPI<Artwork>;
+//template class GenericAPI<Gemstone>;
+//template class GenericAPI<Exhibit>;
