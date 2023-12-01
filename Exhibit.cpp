@@ -45,7 +45,7 @@ string Exhibit::getExhibitName()
 {
     return exhibitName;
 }
-
+ 
 bool Exhibit::addObject(vector<Object> stored)
 {
     return true; 
