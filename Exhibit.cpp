@@ -69,12 +69,13 @@ bool Exhibit::removeObject(Object& object)
 {
     string serialNum = object.getSerialNum();
     int i = 0;
-    for (auto& storedObject : storedObjects) {
+    for (auto& storedObject : storedObjects) 
+    {
         if(serialNum == storedObject.getSerialNum())
         {
             storedObjects.erase(storedObjects.begin()+i);
         }
         i++;
-        }
+    }
     return true;
 }
