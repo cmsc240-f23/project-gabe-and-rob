@@ -23,12 +23,19 @@ crow::json::wvalue Artwork::convertToJson()
     return writeJson;
 }
 
-void Artwork::updateFromJson(json::rvalue readValueJson)
+bool Artwork::updateFromJson(json::rvalue readValueJson)
 {
-    Object::updateFromJson(readValueJson); 
-    artist = readValueJson["artist"].s();
-    typeOfWork = readValueJson["typeOfWork"].s();
-    dateCreated = readValueJson["dateCreated"].s();
+    if(Object::updateFromJson(readValueJson))
+    {
+        artist = readValueJson["artist"].s();
+        typeOfWork = readValueJson["typeOfWork"].s();
+        dateCreated = readValueJson["dateCreated"].s();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 

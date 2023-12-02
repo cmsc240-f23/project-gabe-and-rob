@@ -19,9 +19,10 @@ public:
     void setDateCreated(string newDateCreated){dateCreated = newDateCreated;}
 
     crow::json::wvalue convertToJson();
-    void updateFromJson(crow::json::rvalue readValueJson);
+    bool updateFromJson(crow::json::rvalue readValueJson);
 
     friend class Storage;
+    friend class Exhibit;
 private:
     string artist;
     string typeOfWork;

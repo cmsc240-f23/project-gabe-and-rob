@@ -11,7 +11,7 @@
 #include "GenericAPI.h"
 #include "Artwork.h"
 #include "Gemstone.h"
-//#include "Exhibit.h"
+#include "Exhibit.h"
 #include "Storage.h"
 #include "Object.h"
 
@@ -26,6 +26,7 @@ extern map<std::string, Object> objectsMap;
 extern map<std::string, Artwork> artworksMap;
 extern map<std::string, Gemstone> gemstonesMap;
 extern map<std::string, Storage> storagesMap;
+extern map<std::string, Exhibit> exhibitsMap;
 
 /**
  * @brief Create a new resource.
@@ -143,7 +144,11 @@ void GenericAPI<T>::updateResource(request req, response& res, string id)
         }
 
         // Update the resource.
-        resource.updateFromJson(readValueJson);
+        if(!resource.updateFromJson(readValueJson))
+        {
+            res.code = 404;
+            res.end("New Location Not Found");
+        }
         resourceMap[id] = resource;
 
         // Return the updated resource as a JSON string.
@@ -198,68 +203,68 @@ response GenericAPI<T>::deleteResource(string id)
 //     } 
 // } comparatorSerialNumber;
 
-template<typename T> 
-response GenericAPI<T>::addToStorage(std::string currentStorage, std::string id)
-    {
-        try
-        {
-        // Get the resource from the resource map.
-        T resource = resourceMap.at(id);
-        std::string current_Location = resource.getLocation();
-        Storage current_location = resourceMap.at(current_location);
-        Storage new_location = resourceMap.at(currentStorage)
+// template<typename T> 
+// response GenericAPI<T>::addToStorage(std::string currentStorage, std::string id)
+//     {
+//         try
+//         {
+//         // Get the resource from the resource map.
+//         T resource = resourceMap.at(id);
+//         std::string current_Location = resource.getLocation();
+//         Storage current_location = resourceMap.at(current_location);
+//         Storage new_location = resourceMap.at(currentStorage)
 
-        resource.moveTo(currentStorage);
-        current_location.removeObject(resource&);
-        new_location.addObject(resource&);
+//         resource.moveTo(currentStorage);
+//         current_location.removeObject(resource&);
+//         new_location.addObject(resource&);
 
-        // Update the Json Strings for each object
+//         // Update the Json Strings for each object
         
-        resource.convertToJson().updateFromJson();
-        current_location.convertToJson().updateFromJson();
-        new_location.convertToJson().updateFromJson();
+//         resource.convertToJson().updateFromJson();
+//         current_location.convertToJson().updateFromJson();
+//         new_location.convertToJson().updateFromJson();
 
-        // 200 OK: The request succeeded.
-        return response(200, "Resource Updated");
+//         // 200 OK: The request succeeded.
+//         return response(200, "Resource Updated");
        
-        }
-        catch (out_of_range& exception) 
-        {
-            // If the resource was not found in the map return a 404 not found error.
-            return response(404, "Resource Not Found");
-        }
-    }
+//         }
+//         catch (out_of_range& exception) 
+//         {
+//             // If the resource was not found in the map return a 404 not found error.
+//             return response(404, "Resource Not Found");
+//         }
+//     }
 
-template<typename T> 
-response GenericAPI<T>::moveToStorage(std::string id, std::string newStorage)
-    {
-        try{
-        T resource = resourceMap.at(id);
-        std::string current_Location = resource.getLocation();
-        Storage current_location = resourceMap.at(current_location);
-        Storage new_location = resourceMap.at(newStorage);
+// template<typename T> 
+// response GenericAPI<T>::moveToStorage(std::string id, std::string newStorage)
+//     {
+//         try{
+//         T resource = resourceMap.at(id);
+//         std::string current_Location = resource.getLocation();
+//         Storage current_location = resourceMap.at(current_location);
+//         Storage new_location = resourceMap.at(newStorage);
 
-        resource.moveTo(newStorage);
-        current_location.removeObject(resource&);
-        new_location.addObject(resource&);
+//         resource.moveTo(newStorage);
+//         current_location.removeObject(resource&);
+//         new_location.addObject(resource&);
 
-        // Update the Json Strings for each object
+//         // Update the Json Strings for each object
         
-        resource.convertToJson().updateFromJson();
-        current_location.convertToJson().updateFromJson();
-        new_location.convertToJson().updateFromJson();
+//         resource.convertToJson().updateFromJson();
+//         current_location.convertToJson().updateFromJson();
+//         new_location.convertToJson().updateFromJson();
 
-        // 200 OK: The request succeeded.
-        return response(200, "Resource Updated");
+//         // 200 OK: The request succeeded.
+//         return response(200, "Resource Updated");
        
-        }
-        catch (out_of_range& exception) 
-        {
-            // If the resource was not found in the map return a 404 not found error.
-            return response(404, "Resource Not Found");
-        }
+//         }
+//         catch (out_of_range& exception) 
+//         {
+//             // If the resource was not found in the map return a 404 not found error.
+//             return response(404, "Resource Not Found");
+//         }
 
-    }
+//     }
 
 
 
@@ -339,4 +344,4 @@ template class GenericAPI<Object>;
 template class GenericAPI<Storage>;
 template class GenericAPI<Artwork>;
 template class GenericAPI<Gemstone>;
-//template class GenericAPI<Exhibit>;
+template class GenericAPI<Exhibit>;

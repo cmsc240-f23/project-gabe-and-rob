@@ -27,9 +27,10 @@ public:
     virtual bool compare(Object& object);
 
     virtual crow::json::wvalue convertToJson();
-    virtual void updateFromJson(crow::json::rvalue readValueJson);
+    virtual bool updateFromJson(crow::json::rvalue readValueJson);
 
     friend class Storage;
+    friend class Exhibit;
 private:
     std::string location;
     std::string donor;

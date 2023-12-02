@@ -1,6 +1,4 @@
 #include "Object.h"
-#include "Artwork.h"
-#include "Gemstone.h"
 #include "Storage.h"
 #include "Exhibit.h"
 #include <iostream>
@@ -9,9 +7,8 @@ using namespace std;
 using namespace crow;
 
 extern map<std::string, Object> objectsMap;
-extern map<std::string, Artwork> artworksMap;
-extern map<std::string, Gemstone> gemstonesMap;
 extern map<std::string, Storage> storagesMap;
+extern map<std::string, Exhibit> exhibitsMap;
 
 Object::Object()
 {
@@ -36,11 +33,36 @@ crow::json::wvalue Object::convertToJson()
 }
 
 // Update from JSON
-void Object::updateFromJson(crow::json::rvalue readValueJson) 
+bool Object::updateFromJson(crow::json::rvalue readValueJson) 
 {
+    string original_location = location;
+    string new_location = readValueJson["location"].s();
+    if(new_location != location)
+        try
+        {
+            Storage oldStorage = storagesMap.at(original_location);
+            Storage newStorage = storagesMap.at(new_location);
+            oldStorage.removeObject(*this);
+            newStorage.addObject(*this);
+            location = readValueJson["location"].s();
+        }
+        catch(...)
+        {
+            try
+            {
+                Exhibit oldStorage = exhibitsMap.at(original_location);
+                Exhibit newStorage = exhibitsMap.at(new_location);
+                oldStorage.removeObject(*this);
+                newStorage.addObject(*this);
+                location = readValueJson["location"].s();
+            }
+            catch(...)
+            {
+                return false;
+            }
+        }
     serialNum = readValueJson["serialNum"].s();
     weight = readValueJson["weight"].i();
-    location = readValueJson["location"].s();
     donor = readValueJson["donor"].s();
     dateRetrieved = readValueJson["dateRetrieved"].s();
 }

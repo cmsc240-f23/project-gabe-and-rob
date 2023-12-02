@@ -16,17 +16,18 @@ public:
     bool addObject(Object& object);
     bool isEmpty();
     bool removeObject(Object& object);
-    int getID();
-    void setID(int newIdNum){idNum = newIdNum;}
+    string getSerialNum(){return idNum;}
+    void setSerialNum(string newIdNum){idNum = newIdNum;}
  
     crow::json::wvalue convertToJson();
-    void updateFromJson(crow::json::rvalue readValueJson);
+    bool updateFromJson(crow::json::rvalue readValueJson);
 
-
-
+    friend class Artwork;
+    friend class Gemstone;
+    friend class Object;
 private:
     string exhibitName;
-    int idNum;
+    string idNum;
     vector<Object> storedObjects;
 
 
