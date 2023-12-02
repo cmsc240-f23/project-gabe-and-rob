@@ -46,7 +46,7 @@ int main(){
     CROW_ROUTE(app, "/api/objects/<string>").methods("GET"_method)(GenericAPI<Object>::readResource);
     CROW_ROUTE(app, "/api/objects/<string>").methods("PUT"_method)(GenericAPI<Object>::updateResource);
     CROW_ROUTE(app, "/api/objects/<string>").methods("DELETE"_method)(GenericAPI<Object>::deleteResource);
-    CROW_ROUTE(app, "/api/objects/<string>/<string>").methods("PUT"_method)(GenericAPI<Object>::MoveToStorage);
+    CROW_ROUTE(app, "/api/objects/<string>/<string>").methods("PUT"_method)(GenericAPI<Object>::moveToStorage);
 
     // storages
     CROW_ROUTE(app, "/api/storages").methods("POST"_method)(GenericAPI<Storage>::createResource);
@@ -54,7 +54,7 @@ int main(){
     CROW_ROUTE(app, "/api/storages/<string>").methods("GET"_method)(GenericAPI<Storage>::readResource);
     CROW_ROUTE(app, "/api/storages/<string>").methods("PUT"_method)(GenericAPI<Storage>::updateResource);
     CROW_ROUTE(app, "/api/storages/<string>").methods("DELETE"_method)(GenericAPI<Storage>::deleteResource);
-    CROW_ROUTE(app, "/api/storages/<string>/<string>").methods("PUT"_method)(GenericAPI<Storage>::addtoStorage);
+    CROW_ROUTE(app, "/api/storages/<string>/<string>").methods("PUT"_method)(GenericAPI<Storage>::addToStorage);
 
     // gemstones
     CROW_ROUTE(app, "/api/gemstones").methods("POST"_method)(GenericAPI<Gemstone>::createResource);
@@ -62,7 +62,7 @@ int main(){
     CROW_ROUTE(app, "/api/gemstones/<string>").methods("GET"_method)(GenericAPI<Gemstone>::readResource);
     CROW_ROUTE(app, "/api/gemstones/<string>").methods("PUT"_method)(GenericAPI<Gemstone>::updateResource);
     CROW_ROUTE(app, "/api/gemstones/<string>").methods("DELETE"_method)(GenericAPI<Gemstone>::deleteResource);
-    CROW_ROUTE(app, "/api/gemstones/<string>/<string>").methods("PUT"_method)(GenericAPI<Gemstone>::MoveToStorage);
+    CROW_ROUTE(app, "/api/gemstones/<string>/<string>").methods("PUT"_method)(GenericAPI<Gemstone>::moveToStorage);
 
     // // Artworks
     CROW_ROUTE(app, "/api/artworks").methods("POST"_method)(GenericAPI<Artwork>::createResource);
@@ -70,7 +70,7 @@ int main(){
     CROW_ROUTE(app, "/api/artworks/<string>").methods("GET"_method)(GenericAPI<Artwork>::readResource);
     CROW_ROUTE(app, "/api/artworks/<string>").methods("PUT"_method)(GenericAPI<Artwork>::updateResource);
     CROW_ROUTE(app, "/api/artworks/<string>").methods("DELETE"_method)(GenericAPI<Artwork>::deleteResource);
-    CROW_ROUTE(app, "/api/artworks/<string>/<string>").methods("PUT"_method)(GenericAPI<Artwork>::MoveToStorage);
+    CROW_ROUTE(app, "/api/artworks/<string>/<string>").methods("PUT"_method)(GenericAPI<Artwork>::moveToStorage);
 
     // Run the web service app.
     app.port(17953).run();

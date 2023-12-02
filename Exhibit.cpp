@@ -46,8 +46,35 @@ string Exhibit::getExhibitName()
     return exhibitName;
 }
   
-bool Exhibit::addObject(vector<Object> stored)
+bool Storage::addObject(Object& object)
 {
-    return true; 
- 
+    // if(!objectExists(object))
+    // {
+    //     return false;
+    // }
+    string serialNumber = object.getSerialNum();
+    for (auto& storedObject : storedObjects)
+    {
+        if(serialNumber == storedObject.getSerialNum())
+        {
+            return false;
+        } 
+    }
+    //add the object to the back
+    storedObjects.push_back(object);
+    return true;
+}
+
+bool Storage::removeObject(Object& object)
+{
+    string serialNumber = object.getSerialNum();
+    int i = 0;
+    for (auto& storedObject : storedObjects) {
+        if(serialNum == storedObject.getSerialNum())
+        {
+            storedObjects.erase(storedObjects.begin()+i);
+        }
+        i++;
+        }
+    return true;
 }

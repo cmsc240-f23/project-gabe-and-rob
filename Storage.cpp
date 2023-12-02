@@ -94,7 +94,6 @@ bool Storage::addObject(Object& object)
     //     return false;
     // }
     string serialNumber = object.getSerialNum();
-    int i = 0;
     for (auto& storedObject : storedObjects)
     {
         if(serialNumber == storedObject.getSerialNum())

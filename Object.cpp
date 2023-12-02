@@ -1,8 +1,17 @@
 #include "Object.h"
+#include "Artwork.h"
+#include "Gemstone.h"
+#include "Storage.h"
+#include "Exhibit.h"
 #include <iostream>
 #include <crow.h>
 using namespace std;
 using namespace crow;
+
+extern map<std::string, Object> objectsMap;
+extern map<std::string, Artwork> artworksMap;
+extern map<std::string, Gemstone> gemstonesMap;
+extern map<std::string, Storage> storagesMap;
 
 Object::Object()
 {
