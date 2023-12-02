@@ -27,7 +27,7 @@ public:
 private:
     string exhibitName;
     int idNum;
-    vector<Object> exhibits;
+    vector<Object> storedObjects;
 
 
 

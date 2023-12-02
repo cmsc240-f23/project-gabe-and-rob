@@ -22,7 +22,7 @@ crow::json::wvalue Exhibit::convertToJson()
 
     //convert objects to json by the exhibit names
     int index = 0;
-    for(Object object : exhibits)
+    for(Object object : storedObjects)
     {
         writeJson["exhibits"][index]["exhibitName"] = object.getLocation();
     }
@@ -37,7 +37,7 @@ void Exhibit::updateFromJson(crow::json::rvalue readValueJson)
 
     for(crow::json::rvalue objectReadValueJson: readValueJson["exhibits"])
     {
-        exhibits.push_back(objectsMap.at(objectReadValueJson["exhibitName"].s()));
+        storedObjects.push_back(objectsMap.at(objectReadValueJson["exhibitName"].s()));
     }
 }
 
@@ -46,7 +46,7 @@ string Exhibit::getExhibitName()
     return exhibitName;
 }
   
-bool Storage::addObject(Object& object)
+bool Exhibit::addObject(Object& object)
 {
     // if(!objectExists(object))
     // {
@@ -65,9 +65,9 @@ bool Storage::addObject(Object& object)
     return true;
 }
 
-bool Storage::removeObject(Object& object)
+bool Exhibit::removeObject(Object& object)
 {
-    string serialNumber = object.getSerialNum();
+    string serialNum = object.getSerialNum();
     int i = 0;
     for (auto& storedObject : storedObjects) {
         if(serialNum == storedObject.getSerialNum())
