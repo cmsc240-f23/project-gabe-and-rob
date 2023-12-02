@@ -18,10 +18,8 @@ public:
     string getDateCreated();
     void setDateCreated(string newDateCreated){dateCreated = newDateCreated;}
 
-    virtual bool compare(Object& object);
-
-    virtual crow::json::wvalue convertToJson();
-    virtual void updateFromJson(crow::json::rvalue readValueJson);
+    crow::json::wvalue convertToJson();
+    void updateFromJson(crow::json::rvalue readValueJson);
 
 
 

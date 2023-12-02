@@ -5,6 +5,8 @@
 #include <iostream>
 #include <crow.h>
 #include "Object.h"
+#include "Artwork.h"
+#include "Gemstone.h"
 using namespace std;
 
 
@@ -38,6 +40,8 @@ private:
     string storageName;
     string serialNum;
     vector<Object> storedObjects;
+    vector<Artwork> storedArtworks;
+    vector<Gemstone> storedGemstones;
 };
 
 #endif

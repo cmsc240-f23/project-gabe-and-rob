@@ -29,7 +29,7 @@ public:
     virtual crow::json::wvalue convertToJson();
     virtual void updateFromJson(crow::json::rvalue readValueJson);
 
-private:
+private: 
     std::string location;
     std::string donor;
     std::string dateRetrieved;

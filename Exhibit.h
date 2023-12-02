@@ -18,7 +18,7 @@ public:
     bool removeObject(vector<Object> stored);
     int getID();
     void setID(int newIdNum){idNum = newIdNum;}
-
+ 
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
 

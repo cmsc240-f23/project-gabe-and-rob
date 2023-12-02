@@ -14,7 +14,6 @@ public:
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
 
-
     string getType();
     void setType(string newType){type = newType;}
     string getDimensions();
