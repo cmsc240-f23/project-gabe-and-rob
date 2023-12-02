@@ -166,7 +166,7 @@ Search
     - Description: Delete a specific object from the object list.
     - Response: 204 No Content. Nothing gets returned.
 
-**Artwork**
+**Artwork** 
 1. GET
     - api/artwork
     - Description: Return all the artworks within the Museum's collection, ordered by Serial#
