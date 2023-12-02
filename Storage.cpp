@@ -6,6 +6,8 @@ using namespace std;
 using namespace crow;
 
 extern map<std::string, Object> objectsMap;
+extern map<std::string, Artwork> artworksMap;
+extern map<std::string, Gemstone> gemstonesMap;
 
 Storage::Storage(json::rvalue readValueJson)  
 {
@@ -28,6 +30,16 @@ json::wvalue Storage::convertToJson()
         writeJson["storedObjects"][index]["serialNum"] = object.getSerialNum();
         index ++;
     }
+    for (Object artwork : storedArtworks) 
+    {
+        writeJson["storedArtworks"][index]["serialNum"] = artwork.getSerialNum();
+        index ++;
+    }
+    for (Object gemstone : storedGemstones) 
+    {
+        writeJson["storedGemstones"][index]["serialNum"] = gemstone.getSerialNum();
+        index ++;
+    }
 
     return writeJson;
 }
@@ -42,6 +54,14 @@ void Storage::updateFromJson(json::rvalue readValueJson)
     for (json::rvalue storedObjectReadValueJson: readValueJson["storedObjects"])
     {
         storedObjects.push_back(objectsMap.at(storedObjectReadValueJson["serialNum"].s()));
+    }
+    for (json::rvalue storedArtworksReadValueJson: readValueJson["storedArtworks"])
+    {
+        storedArtworks.push_back(artworksMap.at(storedArtworksReadValueJson["serialNum"].s()));
+    }
+    for (json::rvalue storedGemstonesReadValueJson: readValueJson["storedGemstones"])
+    {
+        storedGemstones.push_back(gemstonesMap.at(storedGemstonesReadValueJson["serialNum"].s()));
     }
     
 }

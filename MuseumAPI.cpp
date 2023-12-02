@@ -37,6 +37,8 @@ int main(){
     // CROW_ROUTE(app, "/api/exhibits/<string>").methods("GET"_method)(GenericAPI<Exhibit>::readResource);
     // CROW_ROUTE(app, "/api/exhibits/<string>").methods("PUT"_method)(GenericAPI<Exhibit>::updateResource);
     // CROW_ROUTE(app, "/api/exhibits/<string>").methods("DELETE"_method)(GenericAPI<Exhibit>::deleteResource);
+    // addtoExhibit(std::string id);
+    // deleteFromExhibit(std::string id);
 
     // Objects
     CROW_ROUTE(app, "/api/objects").methods("POST"_method)(GenericAPI<Object>::createResource);
@@ -51,6 +53,8 @@ int main(){
     CROW_ROUTE(app, "/api/storages/<string>").methods("GET"_method)(GenericAPI<Storage>::readResource);
     CROW_ROUTE(app, "/api/storages/<string>").methods("PUT"_method)(GenericAPI<Storage>::updateResource);
     CROW_ROUTE(app, "/api/storages/<string>").methods("DELETE"_method)(GenericAPI<Storage>::deleteResource);
+    CROW_ROUTE(app, "/api/storages/<string>").methods("PUT"_method)(GenericAPI<Storage>::addtoStorage);
+    CROW_ROUTE(app, "/api/storages/<string>/<string>").methods("DELETE"_method)(GenericAPI<Storage>::deleteFromStorage);
 
     // gemstones
     CROW_ROUTE(app, "/api/gemstones").methods("POST"_method)(GenericAPI<Gemstone>::createResource);

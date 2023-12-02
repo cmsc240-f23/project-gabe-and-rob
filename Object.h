@@ -19,21 +19,20 @@ public:
     std::string getDateRetrieved();
     int getWeight();
     std::string getSerialNum();
+    std::string getName() const {return name;}
     bool compare(Object& object);
 
     virtual crow::json::wvalue convertToJson();
     virtual void updateFromJson(crow::json::rvalue readValueJson);
 
+    friend class Storage;
 private:
     std::string location;
     std::string donor;
     std::string dateRetrieved;
     int weight; 
     std::string serialNum;
- 
-
-
-
+    std::string name;
 };
 
 #endif

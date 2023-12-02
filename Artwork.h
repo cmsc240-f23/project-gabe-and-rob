@@ -18,8 +18,7 @@ public:
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
 
-
-
+    friend class Storage;
 private:
     string artist;
     string typeOfWork;

@@ -15,6 +15,10 @@ public:
     static crow::response readAllResources();
     static void updateResource(crow::request req, crow::response& res, std::string id); 
     static crow::response deleteResource(std::string id); 
+    static void addtoStorage(std::string id);
+    static void deleteFromStorage(std::string id);
+    static void addtoExhibit(std::string id);
+    static void deleteFromExhibit(std::string id);
 };
 
 #endif // GENERIC_API_H

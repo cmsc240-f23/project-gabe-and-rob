@@ -18,6 +18,7 @@ public:
     string getType();
     string getDimensions();
 
+    friend class Storage;
 private:
     string type;
     string dimensions;
