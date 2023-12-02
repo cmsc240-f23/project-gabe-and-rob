@@ -15,12 +15,20 @@ public:
     Storage(crow::json::rvalue readValueJson);
 
     string getStorageName() const {return storageName; }
+    void setStorageName(string newStorageName)
+    {
+        storageName = newStorageName;
+    }
     bool objectExists(Object& object);
     bool addObject(Object& object);
     bool removeObject(Object& object);
     bool isEmpty();
     string getSerialNum() const {return serialNum; }
-    vector<Object> getStoredObjects() const{return storedObjects;}
+    void setSerialNum(string newSerialNum) 
+    {
+        serialNum = newSerialNum;
+    }
+    vector<Object> getStoredObjects() const {return storedObjects;}
 
     //bool objectExists();
 

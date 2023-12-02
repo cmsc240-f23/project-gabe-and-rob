@@ -12,10 +12,12 @@ public:
     Exhibit();
     Exhibit(crow::json::rvalue readValueJson);
     string getExhibitName();
+    void setExhibitName(string newExhibitName){exhibitName = newExhibitName;}
     bool addObject(vector<Object> stored);
     bool isEmpty();
     bool removeObject(vector<Object> stored);
     int getID();
+    void setID(int newIdNum){idNum = newIdNum;}
 
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);

@@ -16,7 +16,9 @@ public:
 
 
     string getType();
+    void setType(string newType){type = newType;}
     string getDimensions();
+    void setDimensions(string newDimensions){dimensions = newDimensions;}
 
 private:
     string type;

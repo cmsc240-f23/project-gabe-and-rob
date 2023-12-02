@@ -15,10 +15,15 @@ public:
     //     : location(location), donor(donor), dateRetrieved(dateRetrieved), weight(weight), serialNum(serialNum) { } 
     std::string moveObjects(std::string loc);
     std::string getLocation();
+    void setLocation(std::string newLocation){location = newLocation;}
     std::string getDonor();
+    void setDonor(std::string newDonor){donor = newDonor;}
     std::string getDateRetrieved();
+    void setDateRetrieved(std::string newDateRetrieved){dateRetrieved = newDateRetrieved;}
     int getWeight();
+    void setWeight(int newWeight){weight = newWeight;}
     std::string getSerialNum();
+    void setSerialNum(std::string newSerialNum){serialNum = newSerialNum;}
     virtual bool compare(Object& object);
 
     virtual crow::json::wvalue convertToJson();
