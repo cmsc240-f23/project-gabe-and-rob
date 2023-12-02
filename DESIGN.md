@@ -59,7 +59,22 @@ Storage: has a long vector with a catalogue of what object are stored and ordere
 GET
     - api/
     - Description: Print a list of all current storage areas and exhibits
-    - Response: 200OK. with a return list
+    - Response: 200 OK. with a return list
+
+POST
+    - api/
+    - Description: Will create a new Gemstone, Artwork, Object, Storage, or Exhibit
+    - Response: 201 Created. Returns the created resource
+
+PUT
+    - api/
+    - Description: Will update the the Gemstone, Artwork, Object, Storage, or Exhibit
+    - Response: 200 OK. With a return list
+
+DELETE
+    - api/
+    - Description: Deletes a resource from the map
+    - Response: 204 No Content.
 
 Search
     - api/
@@ -75,16 +90,51 @@ Search
     - Description: Return all of the information about a specific object within an exhibit
     - Response: 200 OK. with all the information on a spcific object
 
+3. PUT
+    - api/exhibits/<string>
+    - Description: Update the exhibit and all of its information
+    - Response: 200 OK. Returns the updated list of exhibits
+
+4. POST
+    - /api/exhibits
+    - Description: Creates a new exhibit for the exhibit list
+    - Response: 201 Created. Returns the created exhibit.
+
+5. DELETE
+    - /api/exhibits/<string>
+    - Description: Delete a specific exhibit from the exhibit list.
+    - Response: 204 No Content. Nothing gets returned.
+
 **Storage** 
 1. GET
-    - api/storage
+    - api/storages
     - Description: Print List of all the Object within the Storage, ordered by serial number.
     - Response: 200 OK. with a returned list of Objects
 
 2. GET
-    - api/storage/{serial #}
+    - api/storages/{serial #}
     - Description: Return all of the information about a specific object within an exhibit
     - Response: 200 OK, along with a printout of the Object's attributes
+
+3. PUT
+    - api/storages/<string>
+    - Description: Update the storage room and all of its information
+    - Response: 200 OK. Returns the updated list of storages
+
+4. PUT
+    - api/storages/<string>/<string>/
+    - Description: Will add something to the storage map.
+    - Response: 200 OK, along with a printout of the added object to the storage map
+
+5. POST
+    - /api/storages
+    - Description: Creates a new storage for the storage list
+    - Response: 201 Created. Returns the created storage.
+
+6. DELETE
+    - /api/exhibits/<string>
+    - Description: Delete a specific exhibit from the exhibit list.
+    - Response: 204 No Content. Nothing gets returned.
 
 **Object**
 1. GET
@@ -92,11 +142,89 @@ Search
     - Description: Return all the objects within the Museum's collection, ordered by Serial#
     - Response: 200 OK, along with a list of Objects
 
-2. Get
+2. GET
     - api/object/{serial #}
     - Description: Return all of the information about a specific object within the museum collection
 
-3. 
+3. PUT
+    - api/object/<string>
+    - Description: Update the object and all of its information
+    - Response: 200 OK. Returns the updated object
+
+4. PUT
+    - api/object/<string>/<string>/
+    - Description: Moves the object to the storage room.
+    - Response: 200 OK, along with a printout of the added object to the storage room
+
+5. POST
+    - /api/object
+    - Description: Creates a new object for the object list
+    - Response: 201 Created. Returns the created object.
+
+6. DELETE
+    - /api/object/<string>
+    - Description: Delete a specific object from the object list.
+    - Response: 204 No Content. Nothing gets returned.
+
+**Artwork**
+1. GET
+    - api/artwork
+    - Description: Return all the artworks within the Museum's collection, ordered by Serial#
+    - Response: 200 OK, along with a list of artworks
+
+2. GET
+    - api/artwork/{serial #}
+    - Description: Return all of the information about a specific artwork within the museum collection
+
+3. PUT
+    - api/artwork/<string>
+    - Description: Update the artwork and all of its information
+    - Response: 200 OK. Returns the updated artwork
+
+4. PUT
+    - api/artwork/<string>/<string>/
+    - Description: Moves the artwork to the storage room.
+    - Response: 200 OK, along with a printout of the added artwork to the storage room
+
+5. POST
+    - /api/artwork
+    - Description: Creates a new artwork for the artwork list
+    - Response: 201 Created. Returns the created artwork.
+
+6. DELETE
+    - /api/artwork/<string>
+    - Description: Delete a specific artwork from the object list.
+    - Response: 204 No Content. Nothing gets returned.
+
+**Gemstone**
+1. GET
+    - api/gemstone
+    - Description: Return all the gemstones within the Museum's collection, ordered by Serial#
+    - Response: 200 OK, along with a list of gemstones
+
+2. GET
+    - api/gemstones/{serial #}
+    - Description: Return all of the information about a specific gemstone within the museum collection
+
+3. PUT
+    - api/gemstone/<string>
+    - Description: Update the gemstone and all of its information
+    - Response: 200 OK. Returns the updated gemstone
+
+4. PUT
+    - api/gemstone/<string>/<string>/
+    - Description: Moves the gemstone to the storage room.
+    - Response: 200 OK, along with a printout of the added gemstone to the storage room
+
+5. POST
+    - /api/gemstone
+    - Description: Creates a new gemstone for the gemstone list
+    - Response: 201 Created. Returns the created gemstone.
+
+6. DELETE
+    - /api/gemstone/<string>
+    - Description: Delete a specific gemstone from the gemstone list.
+    - Response: 204 No Content. Nothing gets returned.
 
 ListAllObjects: HTTP://URMuseums, GET, Expected Response Body: Printed List of all the objects within the Museums, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
 ListExhibitObjects: HTTP:// URMuseums/ExhibitName, GET, Expected Response Body: Print List of all the Object within the Exhibit, ordered by serial number. 200 OK. The main error that can occur is probably a user mistyping the URL, so we will run the general 404: Page not Found. 
