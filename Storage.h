@@ -30,7 +30,7 @@ public:
     {
         serialNum = newSerialNum;
     }
-    vector<Object> getStoredObjects() const {return storedObjects;}
+    //vector<Object> getStoredObjects() const {return storedObjects;}
 
     //bool objectExists();
 
@@ -44,8 +44,8 @@ private:
     string storageName;
     string serialNum;
     vector<Object> storedObjects;
-    vector<Artwork> storedArtworks;
-    vector<Gemstone> storedGemstones;
+    //vector<Artwork> storedArtworks;
+    //vector<Gemstone> storedGemstones;
 };
 
 #endif

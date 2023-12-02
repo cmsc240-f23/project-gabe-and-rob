@@ -14,11 +14,11 @@ using namespace crow;
 using namespace std;
 
 // Load resources from files.
-map<std::string, Exhibit> exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
-map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
 map<std::string, Object> objectsMap = loadFromFile<Object>("objects.json");
 map<std::string, Gemstone> gemstonesMap = loadFromFile<Gemstone>("gemstones.json");
 map<std::string, Artwork> artworksMap = loadFromFile<Artwork>("artworks.json");
+map<std::string, Exhibit> exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
+map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
 
 int main(){
     // Create GenericAPIs to use in the CROW_ROUTES
