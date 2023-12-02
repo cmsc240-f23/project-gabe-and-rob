@@ -35,7 +35,7 @@ public:
     //bool objectExists();
 
     crow::json::wvalue convertToJson();
-    void updateFromJson(crow::json::rvalue readValueJson);
+    bool updateFromJson(crow::json::rvalue readValueJson);
 
     friend class Artwork;
     friend class Gemstone;

@@ -30,7 +30,7 @@ crow::json::wvalue Exhibit::convertToJson()
     return writeJson;
 }
 
-void Exhibit::updateFromJson(crow::json::rvalue readValueJson)
+bool Exhibit::updateFromJson(crow::json::rvalue readValueJson)
 {
     exhibitName = readValueJson["exhibitName"].s();
     idNum = readValueJson["idNum"].i();
@@ -39,6 +39,7 @@ void Exhibit::updateFromJson(crow::json::rvalue readValueJson)
     {
         storedObjects.push_back(objectsMap.at(objectReadValueJson["exhibitName"].s()));
     }
+    return true;
 }
 
 string Exhibit::getExhibitName()

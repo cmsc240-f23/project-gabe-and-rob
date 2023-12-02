@@ -46,7 +46,7 @@ json::wvalue Storage::convertToJson()
 }
 
 // Update from JSON
-void Storage::updateFromJson(json::rvalue readValueJson) 
+bool Storage::updateFromJson(json::rvalue readValueJson) 
 {
     serialNum = readValueJson["serialNum"].s();
     storageName = readValueJson["storageName"].s();
@@ -64,6 +64,8 @@ void Storage::updateFromJson(json::rvalue readValueJson)
     {
         storedGemstones.push_back(gemstonesMap.at(storedGemstonesReadValueJson["serialNum"].s()));
     }
+
+    return true;
     
 }
 

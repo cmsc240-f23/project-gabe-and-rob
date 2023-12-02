@@ -20,10 +20,11 @@ public:
     void setID(int newIdNum){idNum = newIdNum;}
  
     crow::json::wvalue convertToJson();
-    void updateFromJson(crow::json::rvalue readValueJson);
+    bool updateFromJson(crow::json::rvalue readValueJson);
 
-
-
+    friend class Artwork;
+    friend class Gemstone;
+    friend class Object;
 private:
     string exhibitName;
     int idNum;
