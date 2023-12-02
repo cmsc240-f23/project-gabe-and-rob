@@ -6,7 +6,7 @@
 using namespace std;
 #include "Object.h"
 
-class Gemstone
+class Gemstone : public Object
 {
 public:
     Gemstone();

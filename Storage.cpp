@@ -39,9 +39,9 @@ void Storage::updateFromJson(json::rvalue readValueJson)
     storageName = readValueJson["storageName"].s();
 
     // Setting artists
-    for (json::rvalue objectReadValueJson: readValueJson["objects"])
+    for (json::rvalue storedObjectReadValueJson: readValueJson["storedObjects"])
     {
-        storedObjects.push_back(objectsMap.at(objectReadValueJson["serialNum"].s()));
+        storedObjects.push_back(objectsMap.at(storedObjectReadValueJson["serialNum"].s()));
     }
     
 }

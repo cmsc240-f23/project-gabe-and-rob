@@ -2,9 +2,9 @@
 #include <map>
 #include <csignal>
 #include <string>
-//#include "Artwork.h"
+#include "Artwork.h"
 //#include "Exhibit.h"
-//#include "Gemstone.h"
+#include "Gemstone.h"
 #include "GenericAPI.h"
 #include "persistence.h"
 #include "Storage.h"
@@ -17,16 +17,16 @@ using namespace std;
 //map<std::string, Exhibit> exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
 map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
 map<std::string, Object> objectsMap = loadFromFile<Object>("objects.json");
-//map<std::string, Gemstone> gemstonesMap = loadFromFile<Gemstone>("gemstones.json");
-//map<std::string, Artwork> artworksMap = loadFromFile<Artwork>("artworks.json");
+map<std::string, Gemstone> gemstonesMap = loadFromFile<Gemstone>("gemstones.json");
+map<std::string, Artwork> artworksMap = loadFromFile<Artwork>("artworks.json");
 
 int main(){
     // Create GenericAPIs to use in the CROW_ROUTES
     //GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     GenericAPI<Storage>::resourceMap = storagesMap;
     GenericAPI<Object>::resourceMap = objectsMap;
-    //GenericAPI<Gemstone>::resourceMap = gemstonesMap;
-    //GenericAPI<Artwork>::resourceMap = artworksMap;
+    GenericAPI<Gemstone>::resourceMap = gemstonesMap;
+    GenericAPI<Artwork>::resourceMap = artworksMap;
 
     // Setup the simple web service.
     SimpleApp app;
@@ -53,18 +53,18 @@ int main(){
     CROW_ROUTE(app, "/api/storages/<string>").methods("DELETE"_method)(GenericAPI<Storage>::deleteResource);
 
     // gemstones
-    // CROW_ROUTE(app, "/api/gemstones").methods("POST"_method)(GenericAPI<Gemstone>::createResource);
-    // CROW_ROUTE(app, "/api/gemstones").methods("GET"_method)(GenericAPI<Gemstone>::readAllResources);
-    // CROW_ROUTE(app, "/api/gemstones/<string>").methods("GET"_method)(GenericAPI<Gemstone>::readResource);
-    // CROW_ROUTE(app, "/api/gemstones/<string>").methods("PUT"_method)(GenericAPI<Gemstone>::updateResource);
-    // CROW_ROUTE(app, "/api/gemstones/<string>").methods("DELETE"_method)(GenericAPI<Gemstone>::deleteResource);
+    CROW_ROUTE(app, "/api/gemstones").methods("POST"_method)(GenericAPI<Gemstone>::createResource);
+    CROW_ROUTE(app, "/api/gemstones").methods("GET"_method)(GenericAPI<Gemstone>::readAllResources);
+    CROW_ROUTE(app, "/api/gemstones/<string>").methods("GET"_method)(GenericAPI<Gemstone>::readResource);
+    CROW_ROUTE(app, "/api/gemstones/<string>").methods("PUT"_method)(GenericAPI<Gemstone>::updateResource);
+    CROW_ROUTE(app, "/api/gemstones/<string>").methods("DELETE"_method)(GenericAPI<Gemstone>::deleteResource);
 
     // // Artworks
-    // CROW_ROUTE(app, "/api/atworks").methods("POST"_method)(GenericAPI<Artwork>::createResource);
-    // CROW_ROUTE(app, "/api/atworks").methods("GET"_method)(GenericAPI<Artwork>::readAllResources);
-    // CROW_ROUTE(app, "/api/atworks/<string>").methods("GET"_method)(GenericAPI<Artwork>::readResource);
-    // CROW_ROUTE(app, "/api/atworks/<string>").methods("PUT"_method)(GenericAPI<Artwork>::updateResource);
-    // CROW_ROUTE(app, "/api/atworks/<string>").methods("DELETE"_method)(GenericAPI<Artwork>::deleteResource);
+    CROW_ROUTE(app, "/api/artworks").methods("POST"_method)(GenericAPI<Artwork>::createResource);
+    CROW_ROUTE(app, "/api/artworks").methods("GET"_method)(GenericAPI<Artwork>::readAllResources);
+    CROW_ROUTE(app, "/api/artworks/<string>").methods("GET"_method)(GenericAPI<Artwork>::readResource);
+    CROW_ROUTE(app, "/api/artworks/<string>").methods("PUT"_method)(GenericAPI<Artwork>::updateResource);
+    CROW_ROUTE(app, "/api/artworks/<string>").methods("DELETE"_method)(GenericAPI<Artwork>::deleteResource);
 
     // Run the web service app.
     app.port(17953).run();
@@ -73,7 +73,7 @@ int main(){
     //saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     saveToFile<Object>(GenericAPI<Object>::resourceMap, "objects.json");
-    //saveToFile<Gemstone>(GenericAPI<Gemstone>::resourceMap, "gemstones.json");
-    //saveToFile<Artwork>(GenericAPI<Artwork>::resourceMap, "artwork.json");
+    saveToFile<Gemstone>(GenericAPI<Gemstone>::resourceMap, "gemstones.json");
+    saveToFile<Artwork>(GenericAPI<Artwork>::resourceMap, "artwork.json");
 
 }

@@ -6,13 +6,13 @@
 #include <crow.h>
 using namespace std;
 
-class Artwork : private Object 
+class Artwork : public Object 
 {
 public:
     Artwork();
     Artwork(crow::json::rvalue readValueJson);
     string getArtist();
-    string getTypeOfWork();
+    string getTypeOfArtwork();
     string getDateCreated();
 
     virtual bool compare(Object& object);
