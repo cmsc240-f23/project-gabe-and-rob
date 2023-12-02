@@ -72,7 +72,7 @@ bool Storage::updateFromJson(json::rvalue readValueJson)
 bool Storage::objectExists(Object& object)
 {
     string serialNumber = object.getSerialNum();
-    for(int i = 0; i < storedObjects.size(); i++)
+    for(size_t i = 0; i < storedObjects.size(); i++)
     {
         Object storedObject = storedObjects.at(i);
         if(serialNumber == storedObject.getSerialNum())

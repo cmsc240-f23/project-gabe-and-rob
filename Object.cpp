@@ -64,9 +64,10 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
         }
     name = readValueJson["name"].s();
     serialNum = readValueJson["serialNum"].s();
-    weight = readValueJson["weight"].i();
+    weight = readValueJson["weight"].s();
     donor = readValueJson["donor"].s();
     dateRetrieved = readValueJson["dateRetrieved"].s();
+    return true;
 }
 
 string Object::getLocation()
@@ -84,7 +85,7 @@ string Object::getDateRetrieved()
     return dateRetrieved;
 }
 
-int Object::getWeight()
+string Object::getWeight()
 {
     return weight;
 }
