@@ -38,30 +38,7 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
 {
     string original_location = location;
     string new_location = readValueJson["location"].s();
-    if(new_location != location)
-        try
-        {
-            Storage oldStorage = storagesMap.at(original_location);
-            Storage newStorage = storagesMap.at(new_location);
-            oldStorage.removeObject(*this);
-            newStorage.addObject(*this);
-            location = readValueJson["location"].s();
-        }
-        catch(...)
-        {
-            try
-            {
-                Exhibit oldStorage = exhibitsMap.at(original_location);
-                Exhibit newStorage = exhibitsMap.at(new_location);
-                oldStorage.removeObject(*this);
-                newStorage.addObject(*this);
-                location = readValueJson["location"].s();
-            }
-            catch(...)
-            {
-                return false;
-            }
-        }
+    location = readValueJson["location"].s();
     name = readValueJson["name"].s();
     serialNum = readValueJson["serialNum"].s();
     weight = readValueJson["weight"].s();
