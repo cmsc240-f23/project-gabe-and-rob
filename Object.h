@@ -19,10 +19,10 @@ public:
     std::string getDateRetrieved();
     int getWeight();
     std::string getSerialNum();
-    bool compare(Object& object);
+    virtual bool compare(Object& object);
 
-    crow::json::wvalue convertToJson();
-    void updateFromJson(crow::json::rvalue readValueJson);
+    virtual crow::json::wvalue convertToJson();
+    virtual void updateFromJson(crow::json::rvalue readValueJson);
 
 private:
     std::string location;

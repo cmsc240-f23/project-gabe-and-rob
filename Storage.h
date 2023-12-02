@@ -22,6 +22,8 @@ public:
     string getSerialNum() const {return serialNum; }
     vector<Object> getStoredObjects() const{return storedObjects;}
 
+    //bool objectExists();
+
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
 private:

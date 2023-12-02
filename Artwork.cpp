@@ -15,7 +15,7 @@ Artwork::Artwork(crow::json::rvalue readValueJson)
 
 crow::json::wvalue Artwork::convertToJson()
 {
-    json::wvalue writeJson;
+    json::wvalue writeJson = Object::convertToJson();
     writeJson["artist"]= artist;
     writeJson["typeOfWork"]= typeOfWork;
     writeJson["dateCreated"] = dateCreated; 
@@ -24,12 +24,11 @@ crow::json::wvalue Artwork::convertToJson()
 
 void Artwork::updateFromJson(json::rvalue readValueJson)
 {
+    Object::updateFromJson(readValueJson); 
     artist = readValueJson["artist"].s();
     typeOfWork = readValueJson["typeOfWork"].s();
     dateCreated = readValueJson["dateCreated"].s();
 }
-
-
 
 
 string Artwork::getArtist()

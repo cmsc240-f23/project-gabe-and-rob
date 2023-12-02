@@ -180,6 +180,76 @@ response GenericAPI<T>::deleteResource(string id)
         // If the resource was not found in the map return a 404 not found error.
         return response(404, "Resource Not Found");
     }
+
+// Function to handle the GET request that includes the search parameter for searching toppings
+response searchObjects(string searchString) 
+{
+    vector<storedObjects> found;
+    // For each string/Topping pair in the toppings map.
+    for (pair<string, Object> toppingPair : toppingsMap) 
+    {
+        // If the search string is found in the topping as a substring then add it to the found vector.
+        if (toppingPair.second.getTopping().find(searchString) != string::npos) 
+        {
+            found.push_back(toppingPair.second);
+        }
+    }
+
+    // Create a new JSON write value use to write to the file.
+    json::wvalue jsonWriteValue;
+    
+    // For each topping in the vector, convert the toppping to JSON and add to the write value.
+    int index = 0;
+    for (Object objects : found)
+    {
+        jsonWriteValue[index] = convertObjectToJson(topping);
+        index++;
+    }
+
+    return response(jsonWriteValue.dump());
+}
+
+// Comparator to sort pairs according to second value topping.
+struct
+{
+    bool operator()(pair<string, Topping>& a, pair<string, Topping>& b) 
+    { 
+        return a.second.getTopping() < b.second.getTopping(); 
+    } 
+} comparatorTopping;
+
+
+// Function to handle the GET request that includes the sort parameter for sorting toppings
+response sortObjects(string sortString) 
+{
+    // Vector to store the topping pairs.
+    vector<pair<string, Topping>> toppingsToSort;
+
+    // For each string/Topping pair in the toppings map.
+    for (pair<string, Topping> toppingPair : toppingsMap) 
+    {
+        toppingsToSort.push_back(toppingPair);
+    }
+
+    if (sortString == "topping")
+    {
+        // Sort using comparator function 
+        sort(toppingsToSort.begin(), toppingsToSort.end(), comparatorTopping); 
+    }
+
+    // Create a new JSON write value use to write to the file.
+    json::wvalue jsonWriteValue;
+    
+    // For each topping in the vector, convert the toppping to JSON and add to the write value.
+    int index = 0;
+    for (pair<string, Topping> toppingPair : toppingsToSort)
+    {
+        jsonWriteValue[index] = convertToppingToJson(toppingPair.second);
+        index++;
+    }
+
+    return response(jsonWriteValue.dump());
+}
 }
 
 // Explicit template instantiation

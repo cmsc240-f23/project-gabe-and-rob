@@ -40,7 +40,6 @@ void Object::updateFromJson(crow::json::rvalue readValueJson)
 
 string Object::moveObjects(string loc)
 {
-    
     return "in progress";
 }
 

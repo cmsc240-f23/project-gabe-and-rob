@@ -26,6 +26,7 @@ json::wvalue Storage::convertToJson()
     for (Object object : storedObjects) 
     {
         writeJson["storedObjects"][index]["serialNum"] = object.getSerialNum();
+        index ++;
     }
 
     return writeJson;
@@ -38,7 +39,7 @@ void Storage::updateFromJson(json::rvalue readValueJson)
     storageName = readValueJson["storageName"].s();
 
     // Setting artists
-    for (json::rvalue objectReadValueJson: readValueJson["storedObjects"])
+    for (json::rvalue objectReadValueJson: readValueJson["objects"])
     {
         storedObjects.push_back(objectsMap.at(objectReadValueJson["serialNum"].s()));
     }
@@ -59,20 +60,23 @@ bool Storage::objectExists(Object& object)
     return false;
 }
 
+//  bool Storage::objectExists();
+//  {
+//     //if the object does exist in the storedObjects vector
+//     return true; 
+//  }
+
 bool Storage::addObject(Object& object)
 {
-    if(!objectExixts(object))
-    {
-        return false;
-    }
+    // if(!objectExists(object))
+    // {
+    //     return false;
+    // }
 
 
     string serialNumber = object.getSerialNum();
     for(int i = 0; i < storedObjects.size(); i++)
     {
-       
-        
-        return false;
         //add the object to the back
         storedObjects.push_back(object);
         Object storedObject = storedObjects.at(storedObjects.size() - 1);
@@ -82,8 +86,8 @@ bool Storage::addObject(Object& object)
         }
         
     }
-    //if the object does exist in the storedObjects vector
     return true;
+    
 
 }
 
@@ -98,6 +102,7 @@ bool Storage::removeObject(Object& object)
         //     storedObjects.erase(i);
         // }
     }
+    return true;
 }
 
 
