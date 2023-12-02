@@ -124,9 +124,7 @@ void GenericAPI<T>::updateResource(request req, response& res, string id)
     try 
     {
         // Get the resource from the resource map.
-        cout << "The Problem is here" << endl;
         T resource = resourceMap.at(id);
-        cout << "The Problem is Not here" << endl;
 
         // Convert the request body to JSON.
         json::rvalue readValueJson = json::load(req.body);

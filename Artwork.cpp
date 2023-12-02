@@ -31,11 +31,6 @@ void Artwork::updateFromJson(json::rvalue readValueJson)
     dateCreated = readValueJson["dateCreated"].s();
 }
 
-bool compare()
-{
-    return true;
-}
-
 
 string Artwork::getArtist()
 {

@@ -12,8 +12,11 @@ public:
     Artwork();
     Artwork(crow::json::rvalue readValueJson);
     string getArtist();
+    void setArtist(string newArtist){artist = newArtist;}
     string getTypeOfArtwork();
+    void setTypeOfArtWork(string newTypeOfWork){typeOfWork = newTypeOfWork;}
     string getDateCreated();
+    void setDateCreated(string newDateCreated){dateCreated = newDateCreated;}
 
     crow::json::wvalue convertToJson();
     void updateFromJson(crow::json::rvalue readValueJson);
