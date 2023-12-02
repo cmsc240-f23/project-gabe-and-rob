@@ -23,6 +23,7 @@ public:
     void setWeight(int newWeight){weight = newWeight;}
     std::string getSerialNum();
     std::string getName() const {return name;}
+    void setName(std::string new_name) {name = new_name;}
     void setSerialNum(std::string newSerialNum){serialNum = newSerialNum;}
     virtual bool compare(Object& object);
 

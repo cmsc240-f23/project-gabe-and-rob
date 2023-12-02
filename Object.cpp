@@ -23,6 +23,7 @@ Object::Object(crow::json::rvalue readValueJson)
 crow::json::wvalue Object::convertToJson() 
 {
     json::wvalue writeJson;
+    writeJson["name"] = name;
     writeJson["serialNum"] = serialNum;
     writeJson["weight"] = weight;
     writeJson["location"] = location;
@@ -61,6 +62,7 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
                 return false;
             }
         }
+    name = readValueJson["name"].s();
     serialNum = readValueJson["serialNum"].s();
     weight = readValueJson["weight"].i();
     donor = readValueJson["donor"].s();

@@ -144,11 +144,7 @@ void GenericAPI<T>::updateResource(request req, response& res, string id)
         }
 
         // Update the resource.
-        if(!resource.updateFromJson(readValueJson))
-        {
-            res.code = 404;
-            res.end("New Location Not Found");
-        }
+        resource.updateFromJson(readValueJson);
         resourceMap[id] = resource;
 
         // Return the updated resource as a JSON string.
