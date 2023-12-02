@@ -16,8 +16,8 @@ public:
     bool addObject(Object& object);
     bool isEmpty();
     bool removeObject(Object& object);
-    string getSerialNum(){return idNum;}
-    void setSerialNum(string newIdNum){idNum = newIdNum;}
+    string getSerialNum(){return serialNum;}
+    void setSerialNum(string newIdNum){serialNum = newIdNum;}
  
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);
@@ -27,7 +27,7 @@ public:
     friend class Object;
 private:
     string exhibitName;
-    string idNum;
+    string serialNum;
     vector<Object> storedObjects;
 
 

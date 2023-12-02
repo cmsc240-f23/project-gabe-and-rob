@@ -18,7 +18,7 @@ crow::json::wvalue Exhibit::convertToJson()
 {
     json::wvalue writeJson;
     writeJson["exhibitName"] = exhibitName;
-    writeJson["idNum"] = idNum;
+    writeJson["serialNum"] = serialNum;
 
     //convert objects to json by the exhibit names
     int index = 0;
@@ -33,7 +33,7 @@ crow::json::wvalue Exhibit::convertToJson()
 bool Exhibit::updateFromJson(crow::json::rvalue readValueJson)
 {
     exhibitName = readValueJson["exhibitName"].s();
-    idNum = readValueJson["idNum"].i();
+    serialNum = readValueJson["serialNum"].i();
 
     for(crow::json::rvalue objectReadValueJson: readValueJson["exhibits"])
     {
