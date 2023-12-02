@@ -13,9 +13,9 @@ public:
     Exhibit(crow::json::rvalue readValueJson);
     string getExhibitName();
     void setExhibitName(string newExhibitName){exhibitName = newExhibitName;}
-    bool addObject(vector<Object> stored);
+    bool addObject(Object& object);
     bool isEmpty();
-    bool removeObject(vector<Object> stored);
+    bool removeObject(Object& object);
     int getID();
     void setID(int newIdNum){idNum = newIdNum;}
  

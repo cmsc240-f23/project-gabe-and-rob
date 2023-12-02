@@ -6,7 +6,7 @@
 #include <string>
 
 template<typename T> 
-class GenericAPI 
+class GenericAPI
 {
 public:
     static std::map<std::string, T> resourceMap;
@@ -15,10 +15,8 @@ public:
     static crow::response readAllResources();
     static void updateResource(crow::request req, crow::response& res, std::string id); 
     static crow::response deleteResource(std::string id); 
-    static void addtoStorage(std::string id);
-    static void deleteFromStorage(std::string id);
-    static void addtoExhibit(std::string id);
-    static void deleteFromExhibit(std::string id);
+    static void addToStorage(std::string currentStorage, std::string id);
+    static void MoveToStorage(std::string id, std::string newStorage,);
 };
 
 #endif // GENERIC_API_H

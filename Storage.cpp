@@ -1,4 +1,5 @@
 #include "Storage.h"
+#include <algorithm>
 #include <iostream>
 #include <crow.h>
 
@@ -92,20 +93,17 @@ bool Storage::addObject(Object& object)
     // {
     //     return false;
     // }
-
-
     string serialNumber = object.getSerialNum();
-    for(int i = 0; i < storedObjects.size(); i++)
+    int i = 0;
+    for (auto& storedObject : storedObjects)
     {
-        //add the object to the back
-        storedObjects.push_back(object);
-        Object storedObject = storedObjects.at(storedObjects.size() - 1);
-        if(serialNumber != storedObject.getSerialNum())
+        if(serialNumber == storedObject.getSerialNum())
         {
             return false;
-        }
-        
+        } 
     }
+    //add the object to the back
+    storedObjects.push_back(object);
     return true;
     
 
@@ -114,14 +112,14 @@ bool Storage::addObject(Object& object)
 bool Storage::removeObject(Object& object)
 {
     string serialNumber = object.getSerialNum();
-
-    for(int i = 0; i < storedObjects.size(); i++)
-    {
-        // if(object == storedObjects.at(i))
-        // {
-        //     storedObjects.erase(i);
-        // }
-    }
+    int i = 0;
+    for (auto& storedObject : storedObjects) {
+        if(serialNum == storedObject.getSerialNum())
+        {
+            storedObjects.erase(storedObjects.begin()+i);
+        }
+        i++;
+        }
     return true;
 }
 

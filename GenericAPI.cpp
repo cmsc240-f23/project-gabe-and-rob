@@ -193,6 +193,46 @@ struct
     } 
 } comparatorSerialNumber;
 
+template<typename T> 
+void GenericAPI<T>::addToStorage(std::string currentStorage, std::string id);
+    {
+        try
+        {
+        // Get the resource from the resource map.
+        T resource = resourceMap.at(id);
+        std::string current_Location = resource.getLocation();
+        Storage current_location = resourceMap.at(current_location);
+        Storage new_location = resourceMap.at(currentStorage)
+
+        resource.moveTo(currentStorage);
+        current_location.removeObject(resource&);
+        new_location.addObject(resource&);
+
+        // Update the Json Strings for each object
+        
+        resource.convertToJson().updateFromJson();
+        current_location.convertToJson().updateFromJson();
+        new_location.convertToJson().updateFromJson();
+
+        // 200 OK: The request succeeded.
+        return response(200, "Resource Updated");
+       
+    
+        }
+        catch (out_of_range& exception) 
+        {
+            // If the resource was not found in the map return a 404 not found error.
+            return response(404, "Resource Not Found");
+        }
+        return;
+    }
+
+// template<typename T> 
+// void GenericAPI<T>::moveToStorage(std::string id);
+//     {
+
+//     }
+
 
 
  // Function to handle the GET request that includes the search parameter for searching toppings

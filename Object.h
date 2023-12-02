@@ -13,9 +13,8 @@ public:
     Object(crow::json::rvalue readValueJson);
     // Object(std::string location, std::string donor, std::string dateRetrieved, int weight, int serialNum)
     //     : location(location), donor(donor), dateRetrieved(dateRetrieved), weight(weight), serialNum(serialNum) { } 
-    std::string moveObjects(std::string loc);
+    void moveObjects(std::string newLocation){location = newLocation;}
     std::string getLocation();
-    void setLocation(std::string newLocation){location = newLocation;}
     std::string getDonor();
     void setDonor(std::string newDonor){donor = newDonor;}
     std::string getDateRetrieved();

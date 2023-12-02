@@ -34,13 +34,6 @@ void Object::updateFromJson(crow::json::rvalue readValueJson)
     location = readValueJson["location"].s();
     donor = readValueJson["donor"].s();
     dateRetrieved = readValueJson["dateRetrieved"].s();
-    
-}
-
-
-string Object::moveObjects(string loc)
-{
-    return "in progress";
 }
 
 string Object::getLocation()
