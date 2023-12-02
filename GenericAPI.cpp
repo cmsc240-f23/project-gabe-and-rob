@@ -124,7 +124,9 @@ void GenericAPI<T>::updateResource(request req, response& res, string id)
     try 
     {
         // Get the resource from the resource map.
+        cout << "The Problem is here" << endl;
         T resource = resourceMap.at(id);
+        cout << "The Problem is Not here" << endl;
 
         // Convert the request body to JSON.
         json::rvalue readValueJson = json::load(req.body);
@@ -183,6 +185,15 @@ response GenericAPI<T>::deleteResource(string id)
         // If the resource was not found in the map return a 404 not found error.
         return response(404, "Resource Not Found");
     }
+
+    // Comparator to sort serial Numbers
+struct
+{
+    bool operator()(pair<string, T>& a, pair<string, T>& b) 
+    { 
+        return a.second.getSerialNum() < b.second.getSerialNum(); 
+    } 
+} comparatorSerialNumber;
 
  // Function to handle the GET request that includes the search parameter for searching toppings
 // response searchObjects(string searchString) 
