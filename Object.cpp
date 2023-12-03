@@ -1,4 +1,6 @@
 #include "Object.h"
+#include "Artwork.h"
+#include "Gemstone.h"
 #include "Storage.h"
 #include "Exhibit.h"
 #include <iostream>
@@ -6,7 +8,6 @@
 using namespace std;
 using namespace crow;
 
-extern map<std::string, Object> objectsMap;
 extern map<std::string, Storage> storagesMap;
 extern map<std::string, Exhibit> exhibitsMap;
 
@@ -36,9 +37,41 @@ crow::json::wvalue Object::convertToJson()
 // Update from JSON
 bool Object::updateFromJson(crow::json::rvalue readValueJson) 
 {
+    cout << "running" <<endl;
     string original_location = location;
     string new_location = readValueJson["location"].s();
-    location = readValueJson["location"].s();
+    cout << new_location << endl;
+    bool value;
+    if((storagesMap.find(original_location) != storagesMap.end()))
+        {
+            cout << "Got to Remove" <<endl;
+            Storage old_storage = storagesMap.at(original_location);
+            old_storage.removeFromStorage(serialNum);
+        }
+    if((storagesMap.find(new_location) != storagesMap.end())){
+        cout << "found location" << endl;
+        Storage new_storage = storagesMap.at(new_location);
+        new_storage.addToStorage(serialNum);
+        location = readValueJson["location"].s();
+        value = true;
+    }
+    if((exhibitsMap.find(original_location) != exhibitsMap.end())){
+            Exhibit old_storage = exhibitsMap.at(original_location);
+            old_storage.removeFromExhibit(serialNum);
+        }
+    if((exhibitsMap.find(new_location) != exhibitsMap.end())){
+        cout << "found location" << endl;
+        cout << "got to add" <<endl;
+        Exhibit new_storage = exhibitsMap.at(new_location);
+        new_storage.addToExhibit(serialNum);
+        location = readValueJson["location"].s();
+        value = true;
+    }
+    else{
+        cout << "did not find location" << endl;
+        value = false;
+    }
+    cout<< "We Got To Data" << endl;
     name = readValueJson["name"].s();
     serialNum = readValueJson["serialNum"].s();
     weight = readValueJson["weight"].s();

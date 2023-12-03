@@ -19,8 +19,12 @@ map<std::string, Gemstone> gemstonesMap = loadFromFile<Gemstone>("gemstones.json
 map<std::string, Artwork> artworksMap = loadFromFile<Artwork>("artworks.json");
 map<std::string, Exhibit> exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
 map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
+//Overwrite Location
 
 int main(){
+    objectsMap = loadFromFile<Object>("objects.json");
+    gemstonesMap = loadFromFile<Gemstone>("gemstones.json");
+    artworksMap = loadFromFile<Artwork>("artworks.json");
     // Create GenericAPIs to use in the CROW_ROUTES
     GenericAPI<Object>::resourceMap = objectsMap;
     GenericAPI<Gemstone>::resourceMap = gemstonesMap;

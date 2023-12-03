@@ -15,11 +15,19 @@ public:
     Exhibit(crow::json::rvalue readValueJson);
     string getExhibitName();
     void setExhibitName(string newExhibitName){exhibitName = newExhibitName;}
+    bool addToExhibit(string serialNum);
+    bool removeFromExhibit(string serialNum);
     bool addObject(Object& object);
-    bool isEmpty();
     bool removeObject(Object& object);
+    bool addArtwork(Artwork& object);
+    bool removeArtwork(Artwork& object);
+    bool addGemstone(Gemstone& object);
+    bool removeGemstone(Gemstone& object);
+    bool isEmpty();
     string getSerialNum(){return serialNum;}
     void setSerialNum(string newIdNum){serialNum = newIdNum;}
+
+    bool objectExists(Object& object) const {return true;}
  
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);

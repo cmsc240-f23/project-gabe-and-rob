@@ -22,6 +22,8 @@ public:
         storageName = newStorageName;
     }
     bool objectExists(Object& object);
+    bool addToStorage(string serialNum);
+    bool removeFromStorage(string serialNum);
     bool addObject(Object& object);
     bool removeObject(Object& object);
     bool addArtwork(Artwork& object);
@@ -36,7 +38,7 @@ public:
     }
     vector<Object> getStoredObjects() const {return storedObjects;}
 
-    bool objectExists() const {return true;}
+    bool objectExists(Object& object) const {return true;}
 
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);

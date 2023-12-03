@@ -85,6 +85,49 @@ bool Storage::objectExists(Object& object)
     return false;
 }
 
+bool Storage::addToStorage(string serialNum){
+    if(objectsMap.find(serialNum) != objectsMap.end()){
+        Object object = objectsMap.at(serialNum);
+        bool funct_complete = this->addObject(object);
+        return funct_complete;
+    }
+    else if(artworksMap.find(serialNum) != artworksMap.end()){
+        Artwork artwork = artworksMap.at(serialNum);
+        bool funct_complete = this->addArtwork(artwork);
+        return funct_complete;
+    }
+    else if(gemstonesMap.find(serialNum) != gemstonesMap.end()){
+        Gemstone gemstone = gemstonesMap.at(serialNum);
+        bool funct_complete = this->addGemstone(gemstone);
+        return funct_complete;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Storage::removeFromStorage(string serialNum){
+    cout <<"called remove function" << endl;
+    if(objectsMap.find(serialNum) != objectsMap.end()){
+        Object object = objectsMap.at(serialNum);
+        bool funct_complete = this->removeObject(object);
+        return funct_complete;
+    }
+    else if(artworksMap.find(serialNum) != artworksMap.end()){
+        Artwork artwork = artworksMap.at(serialNum);
+        bool funct_complete = this->removeArtwork(artwork);
+        return funct_complete;
+    }
+    else if(gemstonesMap.find(serialNum) != gemstonesMap.end()){
+        Gemstone gemstone = gemstonesMap.at(serialNum);
+        bool funct_complete = this->removeGemstone(gemstone);
+        return funct_complete;
+    }
+    else{
+        return false;
+    }
+}
+
 bool Storage::addObject(Object& object)
 {
     if(!objectExists(object))
@@ -108,86 +151,93 @@ bool Storage::addObject(Object& object)
 
 bool Storage::removeObject(Object& object)
 {
+    cout << "called remove Object" << endl;
     string serialNumber = object.getSerialNum();
     int i = 0;
     for (auto& storedObject : storedObjects) {
-        if(serialNum == storedObject.getSerialNum())
+        cout << serialNumber << " " << storedObject.getSerialNum() << endl;
+        if(serialNumber == storedObject.getSerialNum())
         {
             storedObjects.erase(storedObjects.begin()+i);
+            cout << "removed object" << endl;
+            
+            for (auto& storedObject : storedObjects) {
+                cout<< "Object here" << endl;
+            }
         }
         i++;
         }
     return true;
 }
 
-// bool Storage::addArtwork(Artwork& object)
-// {
-//     if(!objectExists(object))
-//     {
-//         return false;
-//     }
-//     string serialNumber = object.getSerialNum();
-//     for (auto& storedArtwork : storedArtworks)
-//     {
-//         if(serialNumber == storedArtwork.getSerialNum())
-//         {
-//             return false;
-//         } 
-//     }
-//     //add the object to the back
-//     storedArtworks.push_back(object);
-//     return true;
+bool Storage::addArtwork(Artwork& object)
+{
+    if(!objectExists(object))
+    {
+        return false;
+    }
+    string serialNumber = object.getSerialNum();
+    for (auto& storedArtwork : storedArtworks)
+    {
+        if(serialNumber == storedArtwork.getSerialNum())
+        {
+            return false;
+        } 
+    }
+    //add the object to the back
+    storedArtworks.push_back(object);
+    return true;
     
 
-// }
+}
 
-// bool Storage::removeArtwork(Artwork& object)
-// {
-//     string serialNumber = object.getSerialNum();
-//     int i = 0;
-//     for (auto& storedArtwork : storedArtworks) {
-//         if(serialNum == storedArtwork.getSerialNum())
-//         {
-//             storedArtworks.erase(storedArtworks.begin()+i);
-//         }
-//         i++;
-//         }
-//     return true;
-// }
+bool Storage::removeArtwork(Artwork& object)
+{
+    string serialNumber = object.getSerialNum();
+    int i = 0;
+    for (auto& storedArtwork : storedArtworks) {
+        if(serialNumber == storedArtwork.getSerialNum())
+        {
+            storedArtworks.erase(storedArtworks.begin()+i);
+        }
+        i++;
+        }
+    return true;
+}
 
-// bool Storage::addGemstone(Gemstone& object)
-// {
-//     if(!objectExists(object))
-//     {
-//         return false;
-//     }
-//     string serialNumber = object.getSerialNum();
-//     for (auto& storedGemstone : storedGemstones)
-//     {
-//         if(serialNumber == storedGemstone.getSerialNum())
-//         {
-//             return false;
-//         } 
-//     }
-//     //add the object to the back
-//     storedGemstones.push_back(object);
-//     return true;
+bool Storage::addGemstone(Gemstone& object)
+{
+    if(!objectExists(object))
+    {
+        return false;
+    }
+    string serialNumber = object.getSerialNum();
+    for (auto& storedGemstone : storedGemstones)
+    {
+        if(serialNumber == storedGemstone.getSerialNum())
+        {
+            return false;
+        } 
+    }
+    //add the object to the back
+    storedGemstones.push_back(object);
+    return true;
     
 
-// }
+}
 
-// bool Storage::removeGemstone(Gemstone& object)
-// {
-//     string serialNumber = object.getSerialNum();
-//     int i = 0;
-//     for (auto& storedGemstone : storedGemstones) {
-//         if(serialNum == storedGemstone.getSerialNum())
-//         {
-//             storedGemstones.erase(storedGemstones.begin()+i);
-//         }
-//         i++;
-//         }
-//     return true;
-// }
+bool Storage::removeGemstone(Gemstone& object)
+{
+    string serialNumber = object.getSerialNum();
+    int i = 0;
+    for (auto& storedGemstone : storedGemstones) {
+        if(serialNumber == storedGemstone.getSerialNum())
+        {
+            storedGemstones.erase(storedGemstones.begin()+i);
+        }
+        i++;
+        }
+    return true;
+}
 
 
