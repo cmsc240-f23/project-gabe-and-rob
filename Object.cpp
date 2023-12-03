@@ -42,24 +42,34 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
     string new_location = readValueJson["location"].s();
     cout << new_location << endl;
     bool value;
-    if((storagesMap.find(original_location) != storagesMap.end()))
+    if((storagesMap.find(new_location) != storagesMap.end())){
+        if((storagesMap.find(original_location) != storagesMap.end()))
         {
             cout << "Got to Remove" <<endl;
             Storage old_storage = storagesMap.at(original_location);
             old_storage.removeFromStorage(serialNum);
         }
-    if((storagesMap.find(new_location) != storagesMap.end())){
+        if((exhibitsMap.find(original_location) != exhibitsMap.end())){
+            Exhibit old_storage = exhibitsMap.at(original_location);
+            old_storage.removeFromExhibit(serialNum);
+        }
         cout << "found location" << endl;
         Storage new_storage = storagesMap.at(new_location);
         new_storage.addToStorage(serialNum);
         location = readValueJson["location"].s();
         value = true;
     }
-    if((exhibitsMap.find(original_location) != exhibitsMap.end())){
+    if((exhibitsMap.find(new_location) != exhibitsMap.end())){
+        if((storagesMap.find(original_location) != storagesMap.end()))
+        {
+            cout << "Got to Remove" <<endl;
+            Storage old_storage = storagesMap.at(original_location);
+            old_storage.removeFromStorage(serialNum);
+        }
+        if((exhibitsMap.find(original_location) != exhibitsMap.end())){
             Exhibit old_storage = exhibitsMap.at(original_location);
             old_storage.removeFromExhibit(serialNum);
         }
-    if((exhibitsMap.find(new_location) != exhibitsMap.end())){
         cout << "found location" << endl;
         cout << "got to add" <<endl;
         Exhibit new_storage = exhibitsMap.at(new_location);

@@ -22,12 +22,6 @@ using namespace crow;
 template<typename T> 
 map<string, T> GenericAPI<T>::resourceMap;
 
-extern map<std::string, Object> objectsMap;
-extern map<std::string, Artwork> artworksMap;
-extern map<std::string, Gemstone> gemstonesMap;
-extern map<std::string, Storage> storagesMap;
-extern map<std::string, Exhibit> exhibitsMap;
-
 /**
  * @brief Create a new resource.
  * 

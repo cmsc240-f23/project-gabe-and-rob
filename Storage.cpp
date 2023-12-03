@@ -171,6 +171,7 @@ bool Storage::removeObject(Object& object)
         i++;
         }
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
+    cout << "File saved?" << endl;
     storagesMap = loadFromFile<Storage>("storages.json");
     return true;
 }

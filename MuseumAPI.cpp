@@ -22,6 +22,7 @@ map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
 //Overwrite Location
 
 int main(){
+    //Load Locations of Objects
     objectsMap = loadFromFile<Object>("objects.json");
     gemstonesMap = loadFromFile<Gemstone>("gemstones.json");
     artworksMap = loadFromFile<Artwork>("artworks.json");

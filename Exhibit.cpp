@@ -139,8 +139,8 @@ bool Exhibit::addObject(Object& object)
     for (auto& storedObject : storedObjects) {
                 cout<< "Object here" << endl;
             }
-    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "storages.json");
-    exhibitsMap = loadFromFile<Exhibit>("storages.json");
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
+    exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
     return true;
 }
 
