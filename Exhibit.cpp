@@ -124,7 +124,7 @@ bool Exhibit::addObject(Object& object)
     // {
     //     return false;
     // }
-     cout << "called addObject" << endl;
+    cout << "called addObject" << endl;
     string serialNumber = object.getSerialNum();
     for (auto& storedObject : storedObjects)
     {
@@ -156,6 +156,9 @@ bool Exhibit::removeObject(Object& object)
         }
         i++;
         }
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     return true;
 }
 
@@ -175,6 +178,9 @@ bool Exhibit::addArtwork(Artwork& object)
     }
     //add the object to the back
     storedArtworks.push_back(object);
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     return true;
     
 
@@ -191,6 +197,9 @@ bool Exhibit::removeArtwork(Artwork& object)
         }
         i++;
         }
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     return true;
 }
 
@@ -210,6 +219,9 @@ bool Exhibit::addGemstone(Gemstone& object)
     }
     //add the object to the back
     storedGemstones.push_back(object);
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     return true;
     
 
@@ -226,5 +238,8 @@ bool Exhibit::removeGemstone(Gemstone& object)
         }
         i++;
         }
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
     return true;
 }

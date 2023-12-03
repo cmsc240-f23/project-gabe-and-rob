@@ -147,6 +147,9 @@ bool Storage::addObject(Object& object)
     }
     //add the object to the back
     storedObjects.push_back(object);
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     return true;
     
 
@@ -192,6 +195,9 @@ bool Storage::addArtwork(Artwork& object)
         } 
     }
     //add the object to the back
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     storedArtworks.push_back(object);
     return true;
     
@@ -209,6 +215,9 @@ bool Storage::removeArtwork(Artwork& object)
         }
         i++;
         }
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     return true;
 }
 
@@ -226,6 +235,9 @@ bool Storage::addGemstone(Gemstone& object)
             return false;
         } 
     }
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     //add the object to the back
     storedGemstones.push_back(object);
     return true;
@@ -244,6 +256,9 @@ bool Storage::removeGemstone(Gemstone& object)
         }
         i++;
         }
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     return true;
 }
 
