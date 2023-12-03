@@ -22,11 +22,11 @@ map<std::string, Storage> storagesMap = loadFromFile<Storage>("storages.json");
 
 int main(){
     // Create GenericAPIs to use in the CROW_ROUTES
-    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
-    GenericAPI<Storage>::resourceMap = storagesMap;
     GenericAPI<Object>::resourceMap = objectsMap;
     GenericAPI<Gemstone>::resourceMap = gemstonesMap;
     GenericAPI<Artwork>::resourceMap = artworksMap;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
+    GenericAPI<Storage>::resourceMap = storagesMap;
 
     // Setup the simple web service.
     SimpleApp app;

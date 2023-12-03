@@ -6,6 +6,8 @@ using namespace std;
 using namespace crow;
 
 extern map<std::string, Object> objectsMap;
+extern map<std::string, Artwork> artworksMap;
+extern map<std::string, Gemstone> gemstonesMap;
 
 Exhibit::Exhibit() {}
 
@@ -24,8 +26,21 @@ crow::json::wvalue Exhibit::convertToJson()
     int index = 0;
     for(Object object : storedObjects)
     {
-        writeJson["exhibits"][index]["exhibitName"] = object.getLocation();
+        writeJson["storedObjects"][index]["serialNum"] = object.getSerialNum();
     }
+    index = 0;
+    for (Object artwork : storedArtworks) 
+    {
+        writeJson["storedArtworks"][index]["serialNum"] = artwork.getSerialNum();
+        index ++;
+    }
+    index = 0;
+    for (Object gemstone : storedGemstones) 
+    {
+        writeJson["storedGemstones"][index]["serialNum"] = gemstone.getSerialNum();
+        index ++;
+    }
+
 
     return writeJson;
 }
@@ -33,11 +48,19 @@ crow::json::wvalue Exhibit::convertToJson()
 bool Exhibit::updateFromJson(crow::json::rvalue readValueJson)
 {
     exhibitName = readValueJson["exhibitName"].s();
-    serialNum = readValueJson["serialNum"].i();
+    serialNum = readValueJson["serialNum"].s();
 
-    for(crow::json::rvalue objectReadValueJson: readValueJson["exhibits"])
+    for(crow::json::rvalue objectReadValueJson: readValueJson["storedObjects"])
     {
-        storedObjects.push_back(objectsMap.at(objectReadValueJson["exhibitName"].s()));
+        storedObjects.push_back(objectsMap.at(objectReadValueJson["serialNum"].s()));
+    }
+    for (json::rvalue storedArtworksReadValueJson: readValueJson["storedArtworks"])
+    {
+        storedArtworks.push_back(artworksMap.at(storedArtworksReadValueJson["serialNum"].s()));
+    }
+    for (json::rvalue storedGemstonesReadValueJson: readValueJson["storedGemstones"])
+    {
+        storedGemstones.push_back(gemstonesMap.at(storedGemstonesReadValueJson["serialNum"].s()));
     }
     return true;
 }

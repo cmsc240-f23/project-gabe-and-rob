@@ -24,15 +24,19 @@ public:
     bool objectExists(Object& object);
     bool addObject(Object& object);
     bool removeObject(Object& object);
+    bool addArtwork(Artwork& object);
+    bool removeArtwork(Artwork& object);
+    bool addGemstone(Gemstone& object);
+    bool removeGemstone(Gemstone& object);
     bool isEmpty();
     string getSerialNum() const {return serialNum; }
     void setSerialNum(string newSerialNum) 
     {
         serialNum = newSerialNum;
     }
-    //vector<Object> getStoredObjects() const {return storedObjects;}
+    vector<Object> getStoredObjects() const {return storedObjects;}
 
-    //bool objectExists();
+    bool objectExists() const {return true;}
 
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);
@@ -44,8 +48,8 @@ private:
     string storageName;
     string serialNum;
     vector<Object> storedObjects;
-    //vector<Artwork> storedArtworks;
-    //vector<Gemstone> storedGemstones;
+    vector<Artwork> storedArtworks;
+    vector<Gemstone> storedGemstones;
 };
 
 #endif

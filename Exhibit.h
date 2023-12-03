@@ -4,6 +4,8 @@
 #include <vector>
 #include <crow.h>
 #include "Object.h"
+#include "Artwork.h"
+#include "Gemstone.h"
 using namespace std;
 
 class Exhibit
@@ -29,8 +31,8 @@ private:
     string exhibitName;
     string serialNum;
     vector<Object> storedObjects;
-
-
+    vector<Artwork> storedArtworks;
+    vector<Gemstone> storedGemstones;
 
 };
 
