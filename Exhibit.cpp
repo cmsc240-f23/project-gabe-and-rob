@@ -1,4 +1,6 @@
 #include "Exhibit.h"
+#include "GenericAPI.h"
+#include "persistence.h"
 #include <iostream>
 #include <vector>
 #include <crow.h>
@@ -8,6 +10,7 @@ using namespace crow;
 extern map<std::string, Object> objectsMap;
 extern map<std::string, Artwork> artworksMap;
 extern map<std::string, Gemstone> gemstonesMap;
+extern map<std::string, Exhibit> exhibitsMap;
 
 Exhibit::Exhibit() {}
 
@@ -136,6 +139,8 @@ bool Exhibit::addObject(Object& object)
     for (auto& storedObject : storedObjects) {
                 cout<< "Object here" << endl;
             }
+    saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "storages.json");
+    exhibitsMap = loadFromFile<Exhibit>("storages.json");
     return true;
 }
 

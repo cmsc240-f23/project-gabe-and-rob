@@ -1,4 +1,6 @@
 #include "Storage.h"
+#include "persistence.h"
+#include "GenericAPI.h"
 #include <algorithm>
 #include <iostream>
 #include <crow.h>
@@ -9,6 +11,7 @@ using namespace crow;
 extern map<std::string, Object> objectsMap;
 extern map<std::string, Artwork> artworksMap;
 extern map<std::string, Gemstone> gemstonesMap;
+extern map<std::string, Storage> storagesMap;
 
 Storage::Storage(json::rvalue readValueJson)  
 {
@@ -167,6 +170,8 @@ bool Storage::removeObject(Object& object)
         }
         i++;
         }
+    saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
+    storagesMap = loadFromFile<Storage>("storages.json");
     return true;
 }
 
