@@ -139,8 +139,9 @@ bool Exhibit::addObject(Object& object)
     for (auto& storedObject : storedObjects) {
                 cout<< "Object here" << endl;
             }
+    exhibitsMap[this->getSerialNum()] = *this;
+    GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
-    exhibitsMap = loadFromFile<Exhibit>("exhibits.json");
     return true;
 }
 

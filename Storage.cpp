@@ -170,9 +170,10 @@ bool Storage::removeObject(Object& object)
         }
         i++;
         }
+    storagesMap[this->getSerialNum()] = *this;
+    GenericAPI<Storage>::resourceMap = storagesMap;
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
     cout << "File saved?" << endl;
-    storagesMap = loadFromFile<Storage>("storages.json");
     return true;
 }
 
