@@ -18,8 +18,6 @@ map<std::string, Artwork> artworksMap;
 map<std::string, Exhibit> exhibitsMap;
 map<std::string, Storage> storagesMap;
 
-
-
 TEST_CASE("Creating New Object Resource") 
 {
     //clear resource map before test
@@ -27,7 +25,7 @@ TEST_CASE("Creating New Object Resource")
 
     //setup request object
     request req;
-    req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})"
+    req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})";
     
     // Perform the action
     response res = GenericAPI<Object>::createResource(req);
@@ -79,7 +77,7 @@ TEST_CASE("Read All Objects")
     // Check the results
     CHECK(res.code == 200); // Check that the response code is 200 Ok
     CHECK(res.body == expectedResponseBody); // Validate the reponse body
-    CHECK(GenericAPI<Genre>::resourceMap.size() == 3); // Ensure that no resources were added or removed from the map
+    CHECK(GenericAPI<Object>::resourceMap.size() == 3); // Ensure that no resources were added or removed from the map
 }
 
 TEST_CASE("Updating an Object Resource")
@@ -103,7 +101,7 @@ TEST_CASE("Updating an Object Resource")
     response res;
 
     // Perform the action
-    GenericAPI<Genre>::updateResource(req, res, "1");
+    GenericAPI<Object>::updateResource(req, res, "1");
 
     // Check the results
     CHECK(res.code == 200); // Check that the response code is 200 Ok
@@ -115,7 +113,7 @@ TEST_CASE("Updating an Object Resource")
     CHECK(GenericAPI<Object>::resourceMap.at("2").getWeight() == "32");
     CHECK(GenericAPI<Object>::resourceMap.at("2").getName() == "John Doe"); 
     CHECK(GenericAPI<Object>::resourceMap.at("2").getDateRetrieved() == "N/A");
-    CHECK(GenericAPI<Storage>::resourceMap.at("Dummy"))
+    GenericAPI<Storage>::resourceMap.at("Dummy");
 }
 
 TEST_CASE("Deleting a Object resource") 
