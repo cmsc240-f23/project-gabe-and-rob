@@ -67,7 +67,7 @@ TEST_CASE("Read All Objects")
     objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"DummyExhibit","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
 
     // Setup resource map to be empty before the test
-    GenericAPI<Object>::resourceMap = genresMap;
+    GenericAPI<Object>::resourceMap = objectsMap;
 
     // Perform the action
     response res = GenericAPI<Object>::readAllResources();

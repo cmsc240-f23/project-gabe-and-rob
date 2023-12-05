@@ -30,6 +30,7 @@ crow::json::wvalue Exhibit::convertToJson()
     for(Object object : storedObjects)
     {
         writeJson["storedObjects"][index]["serialNum"] = object.getSerialNum();
+        index ++;
     }
     index = 0;
     for (Object artwork : storedArtworks) 
@@ -65,6 +66,10 @@ bool Exhibit::updateFromJson(crow::json::rvalue readValueJson)
     {
         storedGemstones.push_back(gemstonesMap.at(storedGemstonesReadValueJson["serialNum"].s()));
     }
+    for (auto& storedObject : storedObjects) {
+                cout<< "Object here in exhibit" << endl;
+            }
+    cout << this->convertToJson().dump() << endl;
     return true;
 }
 
@@ -137,8 +142,9 @@ bool Exhibit::addObject(Object& object)
     storedObjects.push_back(object);
     cout << "added Object" << endl;
     for (auto& storedObject : storedObjects) {
-                cout<< "Object here" << endl;
+                cout<< "Object here in exhibit" << endl;
             }
+    cout << this->convertToJson().dump() << endl;
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");

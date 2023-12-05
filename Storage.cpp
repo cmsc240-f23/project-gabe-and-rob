@@ -90,7 +90,9 @@ bool Storage::objectExists(Object& object)
 
 bool Storage::addToStorage(string serialNum){
     if(objectsMap.find(serialNum) != objectsMap.end()){
+        cout << "Got to addToStorage" << endl;
         Object object = objectsMap.at(serialNum);
+        cout << object.convertToJson().dump() << endl;
         bool funct_complete = this->addObject(object);
         return funct_complete;
     }
@@ -133,10 +135,11 @@ bool Storage::removeFromStorage(string serialNum){
 
 bool Storage::addObject(Object& object)
 {
-    if(!objectExists(object))
-    {
-        return false;
-    }
+    // if(!objectExists(object))
+    // {
+    //     return false;
+    // }
+    cout << "Got to AddObject" << endl;
     string serialNumber = object.getSerialNum();
     for (auto& storedObject : storedObjects)
     {
@@ -147,6 +150,10 @@ bool Storage::addObject(Object& object)
     }
     //add the object to the back
     storedObjects.push_back(object);
+    for (auto& storedObject : storedObjects) {
+                cout<< "Object in Storage" << endl;
+            }
+    cout << this->convertToJson().dump() << endl;
     storagesMap[this->getSerialNum()] = *this;
     GenericAPI<Storage>::resourceMap = storagesMap;
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
