@@ -136,11 +136,13 @@ bool Exhibit::addObject(Object& object)
 bool Exhibit::removeObject(Object& object)
 {
     string serialNumber = object.getSerialNum();
+    int i = 0;
     for (auto& storedObject : storedObjects) {
         if(serialNumber == storedObject.getSerialNum())
         {
             storedObjects.erase(storedObjects.begin()+i);
         }
+        i++;
         }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
@@ -169,11 +171,13 @@ bool Exhibit::addArtwork(Artwork& object)
 bool Exhibit::removeArtwork(Artwork& object)
 {
     string serialNumber = object.getSerialNum();
+    int i = 0;
     for (auto& storedArtwork : storedArtworks) {
         if(serialNumber == storedArtwork.getSerialNum())
         {
             storedArtworks.erase(storedArtworks.begin()+i);
         }
+        i++;
         }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
@@ -204,11 +208,13 @@ bool Exhibit::addGemstone(Gemstone& object)
 bool Exhibit::removeGemstone(Gemstone& object)
 {
     string serialNumber = object.getSerialNum();
+    int i = 0;
     for (auto& storedGemstone : storedGemstones) {
         if(serialNumber == storedGemstone.getSerialNum())
         {
             storedGemstones.erase(storedGemstones.begin()+i);
         }
+        i++;
         }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;

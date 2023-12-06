@@ -153,12 +153,14 @@ bool Storage::addObject(Object& object)
 bool Storage::removeObject(Object& object)
 {
     string serialNumber = object.getSerialNum();
+    int i = 0;
     for (auto& storedObject : storedObjects) {
         cout << serialNumber << " " << storedObject.getSerialNum() << endl;
         if(serialNumber == storedObject.getSerialNum())
         {
             storedObjects.erase(storedObjects.begin()+i);
         }
+        i++;
         }
     storagesMap[this->getSerialNum()] = *this;
     GenericAPI<Storage>::resourceMap = storagesMap;
@@ -225,11 +227,13 @@ bool Storage::addGemstone(Gemstone& object)
 bool Storage::removeGemstone(Gemstone& object)
 {
     string serialNumber = object.getSerialNum();
+    int i = 0;
     for (auto& storedGemstone : storedGemstones) {
         if(serialNumber == storedGemstone.getSerialNum())
         {
             storedGemstones.erase(storedGemstones.begin()+i);
         }
+        i++;
         }
     storagesMap[this->getSerialNum()] = *this;
     GenericAPI<Storage>::resourceMap = storagesMap;
