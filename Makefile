@@ -1,4 +1,4 @@
-all: MuseumAPI
+all: MuseumAPI static-analysis run-unit-tests
 
 MuseumAPI: MuseumAPI.o Object.o Storage.o Artwork.o Gemstone.o Exhibit.o GenericAPI.o
 	g++ -lpthread MuseumAPI.o Storage.o Exhibit.o Object.o Artwork.o Gemstone.o GenericAPI.o -o MuseumAPI
@@ -57,6 +57,5 @@ run-unit-tests: GenericAPITest persistenceTest ObjectTest ExhibitTest StorageTes
 static-analysis:
 	cppcheck *.cpp
 	
-
 clean:
 	rm -f *.o MuseumAPI
