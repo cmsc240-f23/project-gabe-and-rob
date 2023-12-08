@@ -1,4 +1,4 @@
-all: MuseumAPI
+all: MuseumAPI static-analysis run-unit-tests
 
 MuseumAPI: MuseumAPI.o Object.o Storage.o Artwork.o Gemstone.o Exhibit.o GenericAPI.o
 	g++ -lpthread MuseumAPI.o Storage.o Exhibit.o Object.o Artwork.o Gemstone.o GenericAPI.o -o MuseumAPI
@@ -28,7 +28,7 @@ GenericAPITest: GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o O
 	g++ -lpthread GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o Object.o Storage.o -o GenericAPITest
 
 persistenceTest: persistenceTest.cpp persistence.h Object.o
-	g++ lpthread persistenceTest.cpp Object.o -o persistenceTest
+	g++ -lpthread persistenceTest.cpp Object.o -o persistenceTest
 
 ObjectTest: ObjectTest.cpp Object.cpp Object.h Object.o
 	g++ -lpthread ObjectTest.cpp Object.o -o ObjectTest
@@ -57,6 +57,5 @@ run-unit-tests: GenericAPITest persistenceTest ObjectTest ExhibitTest StorageTes
 static-analysis:
 	cppcheck *.cpp
 	
-
 clean:
 	rm -f *.o MuseumAPI
