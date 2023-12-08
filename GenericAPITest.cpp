@@ -114,7 +114,7 @@ TEST_CASE("Updating an Object Resource")
     CHECK(GenericAPI<Object>::resourceMap.at("2").getWeight() == "32");
     CHECK(GenericAPI<Object>::resourceMap.at("2").getName() == "John Doe"); 
     CHECK(GenericAPI<Object>::resourceMap.at("2").getDateRetrieved() == "N/A");
-    CHECK(GenericAPI<Storage>::resourceMap.at("Dummy"));
+    CHECK(GenericAPI<Storage>::resourceMap.at("Dummy")); //Why here?
 }
 
 TEST_CASE("Deleting a Object resource") 

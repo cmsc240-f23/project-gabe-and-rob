@@ -37,16 +37,13 @@ crow::json::wvalue Object::convertToJson()
 // Update from JSON
 bool Object::updateFromJson(crow::json::rvalue readValueJson) 
 {
-    cout << "running" <<endl;
     string original_location = location;
     string new_location = readValueJson["location"].s();
-    cout << new_location << endl;
     bool value;
     //Edit to make 'Unsorted' the default
     if((storagesMap.find(new_location) != storagesMap.end())){
         if((storagesMap.find(original_location) != storagesMap.end()))
         {
-            cout << "Got to Remove" <<endl;
             Storage old_storage = storagesMap.at(original_location);
             old_storage.removeFromStorage(serialNum);
         }
@@ -54,16 +51,14 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
             Exhibit old_storage = exhibitsMap.at(original_location);
             old_storage.removeFromExhibit(serialNum);
         }
-        cout << "found location" << endl;
         Storage new_storage = storagesMap.at(new_location);
         new_storage.addToStorage(serialNum);
         location = readValueJson["location"].s();
         value = true;
     }
-    if((exhibitsMap.find(new_location) != exhibitsMap.end())){
+    else if((exhibitsMap.find(new_location) != exhibitsMap.end())){
         if((storagesMap.find(original_location) != storagesMap.end()))
         {
-            cout << "Got to Remove" <<endl;
             Storage old_storage = storagesMap.at(original_location);
             old_storage.removeFromStorage(serialNum);
         }
@@ -71,18 +66,14 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
             Exhibit old_storage = exhibitsMap.at(original_location);
             old_storage.removeFromExhibit(serialNum);
         }
-        cout << "found location" << endl;
-        cout << "got to add" <<endl;
         Exhibit new_storage = exhibitsMap.at(new_location);
         new_storage.addToExhibit(serialNum);
         location = readValueJson["location"].s();
         value = true;
     }
     else{
-        cout << "did not find location" << endl;
         value = false;
     }
-    cout<< "We Got To Data" << endl;
     name = readValueJson["name"].s();
     serialNum = readValueJson["serialNum"].s();
     weight = readValueJson["weight"].s();

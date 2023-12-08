@@ -37,6 +37,8 @@ public:
         serialNum = newSerialNum;
     }
     vector<Object> getStoredObjects() const {return storedObjects;}
+    vector<Artwork> getStoredArtworks() const {return storedArtworks;}
+    vector<Gemstone> getStoredGemstones() const {return storedGemstones;}
 
     bool objectExists(Object& object) const {return true;}
 
