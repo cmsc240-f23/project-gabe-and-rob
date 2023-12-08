@@ -2,6 +2,11 @@
 #include <crow.h>
 #include <doctest.h>
 #include "Object.h"
+#include "Storage.h"
+#include "Exhibit.h"
+#include "Gemstone.h"
+#include "Artwork.h"
+#include "GenericAPI.h"
 #include "persistence.h"
 
 using namespace std;
@@ -9,13 +14,16 @@ using namespace crow;
 
 TEST_CASE("Saving to a file and loading from a file.") 
 {
+    
     // Load a resources to read.
     map<string, Object> objectsMap;
     objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
     objectsMap["2"] = Object{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
-    objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"DummyExhibit","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
+    objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"Unsorted","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
     objectsMap["4"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"Unsorted","weight":"32 Lbs","name":"ObjectToMove","serialNum":"MoveObject1"})")};
 
+    //Load Storage Container
+    Storage storage = Storage{json::load(R"("storedGemstones":[],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"3"}.{"serialNum":"MoveObject1"}],"storedArtworks":[],"serialNum":"Unsorted","storageName":"Unsorted"})")};
     // Perform the action
     saveToFile<Object>(objectsMap, "persistenceTest.json");
     map<string, Object> objectsMapLoaded = loadFromFile<Object>("persistenceTest.json");

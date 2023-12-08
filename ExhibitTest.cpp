@@ -11,8 +11,6 @@
 using namespace std;  
 using namespace crow;  
 
-
-
 TEST_CASE("Testing Exhibit Class") 
 {
     // Testing Storage constructor
