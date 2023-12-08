@@ -110,7 +110,6 @@ bool Storage::addToStorage(string serialNum){
 }
 
 bool Storage::removeFromStorage(string serialNum){
-    cout <<"called remove function" << endl;
     if(objectsMap.find(serialNum) != objectsMap.end()){
         Object object = objectsMap.at(serialNum);
         bool funct_complete = this->removeObject(object);
@@ -133,10 +132,6 @@ bool Storage::removeFromStorage(string serialNum){
 
 bool Storage::addObject(Object& object)
 {
-    if(!objectExists(object))
-    {
-        return false;
-    }
     string serialNumber = object.getSerialNum();
     for (auto& storedObject : storedObjects)
     {
@@ -157,7 +152,6 @@ bool Storage::addObject(Object& object)
 
 bool Storage::removeObject(Object& object)
 {
-    cout << "called remove Object" << endl;
     string serialNumber = object.getSerialNum();
     int i = 0;
     for (auto& storedObject : storedObjects) {
@@ -165,11 +159,6 @@ bool Storage::removeObject(Object& object)
         if(serialNumber == storedObject.getSerialNum())
         {
             storedObjects.erase(storedObjects.begin()+i);
-            cout << "removed object" << endl;
-            
-            for (auto& storedObject : storedObjects) {
-                cout<< "Object here" << endl;
-            }
         }
         i++;
         }
@@ -182,10 +171,6 @@ bool Storage::removeObject(Object& object)
 
 bool Storage::addArtwork(Artwork& object)
 {
-    if(!objectExists(object))
-    {
-        return false;
-    }
     string serialNumber = object.getSerialNum();
     for (auto& storedArtwork : storedArtworks)
     {
@@ -195,13 +180,11 @@ bool Storage::addArtwork(Artwork& object)
         } 
     }
     //add the object to the back
+    storedArtworks.push_back(object);
     storagesMap[this->getSerialNum()] = *this;
     GenericAPI<Storage>::resourceMap = storagesMap;
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
-    storedArtworks.push_back(object);
     return true;
-    
-
 }
 
 bool Storage::removeArtwork(Artwork& object)
@@ -223,10 +206,6 @@ bool Storage::removeArtwork(Artwork& object)
 
 bool Storage::addGemstone(Gemstone& object)
 {
-    if(!objectExists(object))
-    {
-        return false;
-    }
     string serialNumber = object.getSerialNum();
     for (auto& storedGemstone : storedGemstones)
     {
@@ -235,11 +214,11 @@ bool Storage::addGemstone(Gemstone& object)
             return false;
         } 
     }
+    //add the object to the back
+    storedGemstones.push_back(object);
     storagesMap[this->getSerialNum()] = *this;
     GenericAPI<Storage>::resourceMap = storagesMap;
     saveToFile<Storage>(GenericAPI<Storage>::resourceMap, "storages.json");
-    //add the object to the back
-    storedGemstones.push_back(object);
     return true;
     
 

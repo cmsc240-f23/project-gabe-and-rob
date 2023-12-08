@@ -42,6 +42,7 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
     string new_location = readValueJson["location"].s();
     cout << new_location << endl;
     bool value;
+    //Edit to make 'Unsorted' the default
     if((storagesMap.find(new_location) != storagesMap.end())){
         if((storagesMap.find(original_location) != storagesMap.end()))
         {

@@ -17,8 +17,6 @@ map<std::string, Gemstone> gemstonesMap;
 map<std::string, Artwork> artworksMap;
 map<std::string, Exhibit> exhibitsMap;
 map<std::string, Storage> storagesMap;
-
-
  
 TEST_CASE("Creating New Object Resource") 
 {
@@ -27,6 +25,7 @@ TEST_CASE("Creating New Object Resource")
 
     //setup request object
     request req;
+    req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})";
     req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})";
     
     // Perform the action
