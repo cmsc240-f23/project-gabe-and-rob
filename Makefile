@@ -24,5 +24,39 @@ Exhibit.o: Exhibit.cpp Exhibit.h GenericAPI.h persistence.h
 GenericAPI.o: GenericAPI.cpp GenericAPI.h Storage.h Object.h Artwork.h Gemstone.h
 	g++ -Wall -c GenericAPI.cpp
 
+GenericAPITest: GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o Object.o Storage.o
+	g++ -lpthread GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o Object.o Storage.o -o GenericAPITest
+
+persistenceTest: persistenceTest.cpp persistence.h Object.o
+	g++ lpthread persistenceTest.cpp Object.o -o persistenceTest
+
+ObjectTest: ObjectTest.cpp Object.cpp Object.h Object.o
+	g++ -lpthread ObjectTest.cpp Object.o -o ObjectTest
+
+ExhibitTest: ExhibitTest.cpp Exhibit.cpp Exhibit.h Artwork.h Gemstone.h Object.h Exhibit.o
+	g++ -lpthread ExhibitTest.cpp Exhibit.o -o ExhibitTest
+
+StorageTest: StorageTest.cpp Storage.cpp Storage.h Artwork.h Gemstone.h Object.h Storage.o
+	g++ -lpthread StorageTest.cpp Storage.o -o StorageTest
+
+GemstoneTest: GemstoneTest.cpp Gemstone.cpp Gemstone.h Gemstone.o
+	g++ -lpthread GemstoneTest.cpp Gemstone.o -o GemstoneTest
+
+ArtworkTest: ArtworkTest.cpp Artwork.cpp Artwork.h Artwork.o
+	g++ -lpthread ArtworkTest.cpp Artwork.o -o ArtworkTest
+
+run-unit-tests: GenericAPITest persistenceTest ObjectTest ExhibitTest StorageTest GemstoneTest ArtworkTest
+	./GenericAPITest    ;\
+	./persistenceTest	;\
+	./ObjectTest		;\
+	./ExhibitTest		;\
+	./StorageTest		;\
+	./GemstoneTest		;\
+	./ArtworkTest
+
+static-analysis:
+	cppcheck *.cpp
+	
+
 clean:
 	rm -f *.o MuseumAPI
