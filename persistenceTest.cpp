@@ -12,6 +12,9 @@
 using namespace std;
 using namespace crow;
 
+extern map<std::string, Storage> storagesMap;
+extern map<std::string, Exhibit> exhibitsMap;
+
 TEST_CASE("Saving to a file and loading from a file.") 
 {
     

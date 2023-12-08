@@ -135,15 +135,19 @@ bool Exhibit::addObject(Object& object)
 
 bool Exhibit::removeObject(Object& object)
 {
-    string serialNumber = object.getSerialNum();
-    int i = 0;
-    for (auto& storedObject : storedObjects) {
-        if(serialNumber == storedObject.getSerialNum())
+    vector<Object>::iterator it;
+    for (it = storedObjects.begin(); it != storedObjects.end(); /* nothing here! */)
+    {
+        Object storedObject = *it;
+        if (storedObject.getSerialNum() == object.getSerialNum())
         {
-            storedObjects.erase(storedObjects.begin()+i);
+            storedObjects.erase(it++); // advance it while still valid, return previous and erase
         }
-        i++;
-        }
+        else
+            {
+            ++it;
+            }
+    }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
@@ -170,15 +174,19 @@ bool Exhibit::addArtwork(Artwork& object)
 
 bool Exhibit::removeArtwork(Artwork& object)
 {
-    string serialNumber = object.getSerialNum();
-    int i = 0;
-    for (auto& storedArtwork : storedArtworks) {
-        if(serialNumber == storedArtwork.getSerialNum())
+    vector<Artwork>::iterator it;
+    for (it = storedArtworks.begin(); it != storedArtworks.end(); /* nothing here! */)
+    {
+        Artwork storedArtwork = *it;
+        if (storedArtwork.getSerialNum() == object.getSerialNum())
         {
-            storedArtworks.erase(storedArtworks.begin()+i);
+            storedArtworks.erase(it++); // advance it while still valid, return previous and erase
         }
-        i++;
-        }
+        else
+            {
+            ++it;
+            }
+    }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
@@ -207,15 +215,19 @@ bool Exhibit::addGemstone(Gemstone& object)
 
 bool Exhibit::removeGemstone(Gemstone& object)
 {
-    string serialNumber = object.getSerialNum();
-    int i = 0;
-    for (auto& storedGemstone : storedGemstones) {
-        if(serialNumber == storedGemstone.getSerialNum())
+    vector<Gemstone>::iterator it;
+    for (it = storedGemstones.begin(); it != storedGemstones.end(); /* nothing here! */)
+    {
+        Gemstone storedGemstone = *it;
+        if (storedGemstone.getSerialNum() == object.getSerialNum())
         {
-            storedGemstones.erase(storedGemstones.begin()+i);
+            storedGemstones.erase(it++); // advance it while still valid, return previous and erase
         }
-        i++;
-        }
+        else
+            {
+            ++it;
+            }
+    }
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
