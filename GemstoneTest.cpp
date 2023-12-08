@@ -24,6 +24,7 @@ TEST_CASE("Testing Gemstone class")
     //Testing convertToJson method
     SUBCASE("Testing the convertToJson method")
     {
+        //Create a new Gemstone class from json
         Gemstone testGemstone(json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})"));
 
 
@@ -33,7 +34,43 @@ TEST_CASE("Testing Gemstone class")
         // Convert back to a json read value for testing.
         json::rvalue jsonReadValue = json::load(jsonOutput.dump());
 
+        // Check the values.
+        CHECK(jsonReadValue["type"].s() == "Dumbrock");
+        CHECK(jsonReadValue["dimensions"].s() == "big");
+
     }
+
+    // Testing updateFromJson method
+    SUBCASE("Testing updateFromJson Method")
+    {
+        //Create a new Gemstone class from json
+        Gemstone testGemstone(json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})"));
+
+        // Create the update json.
+        json::rvalue updateJson = json::load(R"({"dimensions":"medium","type":"Amethyst","serialNum":"5","name":"BiggerRock","weight":"47 Lbs","location":"DummyExhibit","donor":"n/A","dateRetrieved":"N/A"})");
+
+
+        // Update the Gemstone with the updateFromJson method. 
+        testGemstone.updateFromJson(updateJson);
+
+        //Check the updated values
+        CHECK(testGemstone.getType() == "Amethyst");
+        CHECK(testGemstone.getDimensions() == "medium");
+
+    }
+
+
+    // SUBCASE("Checking errors")
+    // {
+    //     //Testing an ivalid json Gemstone without location
+        
+
+    //     response res = response(400, "Invalid JSON");
+
+    //     CHECK(Gemstone testGemstone(json::load(R"({"dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")) ==  res);
+
+
+    // }
 
 
 
