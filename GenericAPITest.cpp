@@ -19,7 +19,7 @@ map<std::string, Exhibit> exhibitsMap;
 map<std::string, Storage> storagesMap;
 
 
-
+ 
 TEST_CASE("Creating New Object Resource") 
 {
     //clear resource map before test
