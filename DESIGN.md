@@ -1,8 +1,3 @@
-Scraps: 
-
-[{"StorageName":"Dummy","SerialNum":"Storage1","storedObjects":[],"storedArtworks":[],"storedGemstones":[]}]
-
-
 # Project Design Document
 
 ## Introduction

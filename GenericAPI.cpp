@@ -44,6 +44,9 @@ response GenericAPI<T>::createResource(request req)
     if (!readValueJson) 
         return response(400, "Invalid JSON");
     
+    respose res = response(400. "Invalid JSON");
+    CHECK(API::createResource(req) == res)
+
     // Create a new resource.
     T resource{readValueJson};
 

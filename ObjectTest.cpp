@@ -24,7 +24,6 @@ TEST_CASE("Test Object Class")
         CHECK(testObject.getSerialNum() == "1");
         CHECK(testObject.getLocation() == "Unsorted");
         CHECK(testObject.getName() == "Jane Doe");
-
     }
 
     //Testing convertToJson method
@@ -66,9 +65,6 @@ TEST_CASE("Test Object Class")
         CHECK(testObject.getDonor() == "n/A");
         CHECK(testObject.getWeight() == "32 Lbs");
         CHECK(testObject.getDateRetrieved() == "N/A");
-
-
-
     }
 
 

@@ -32,6 +32,10 @@ public:
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);
 
+    vector<Object> getStoredObjects() const {return storedObjects;}
+    vector<Artwork> getStoredArtworks() const {return storedArtworks;}
+    vector<Gemstone> getStoredGemstones() const {return storedGemstones;}
+
     friend class Artwork;
     friend class Gemstone;
     friend class Object;
