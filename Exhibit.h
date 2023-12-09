@@ -11,7 +11,7 @@ using namespace std;
 class Exhibit
 { 
 public:
-    Exhibit();
+    Exhibit() {}
     Exhibit(crow::json::rvalue readValueJson);
     string getExhibitName();
     void setExhibitName(string newExhibitName){exhibitName = newExhibitName;}

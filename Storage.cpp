@@ -18,8 +18,6 @@ Storage::Storage(json::rvalue readValueJson)
     updateFromJson(readValueJson);
 }
 
-Storage::Storage(){}
-
 // Convert to JSON
 json::wvalue Storage::convertToJson() 
 {

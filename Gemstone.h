@@ -9,7 +9,7 @@ using namespace std;
 class Gemstone : public Object
 {
 public:
-    Gemstone();
+    Gemstone() {}
     Gemstone(crow::json::rvalue readValueJson);
     crow::json::wvalue convertToJson();
     bool updateFromJson(crow::json::rvalue readValueJson);

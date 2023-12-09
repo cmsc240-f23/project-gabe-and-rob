@@ -5,8 +5,6 @@
 using namespace std;
 using namespace crow;
 
-Gemstone::Gemstone() {}
-
 Gemstone::Gemstone(crow::json::rvalue readValueJson)
 {
     updateFromJson(readValueJson);

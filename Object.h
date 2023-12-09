@@ -9,7 +9,7 @@
 class Object
 {
 public:
-    Object();
+    Object() {}
     Object(crow::json::rvalue readValueJson);
     void moveObjects(std::string newLocation){location = newLocation;}
     std::string getLocation();
@@ -23,7 +23,7 @@ public:
     std::string getName() const {return name;}
     void setName(std::string new_name) {name = new_name;}
     void setSerialNum(std::string newSerialNum){serialNum = newSerialNum;}
-    virtual bool compare(Object& object);
+    bool compare(Object& object);
 
     virtual crow::json::wvalue convertToJson();
     virtual bool updateFromJson(crow::json::rvalue readValueJson);

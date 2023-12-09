@@ -11,11 +11,6 @@ using namespace crow;
 extern map<std::string, Storage> storagesMap;
 extern map<std::string, Exhibit> exhibitsMap;
 
-Object::Object()
-{
-
-}
-
 Object::Object(crow::json::rvalue readValueJson)  
 {
     updateFromJson(readValueJson);

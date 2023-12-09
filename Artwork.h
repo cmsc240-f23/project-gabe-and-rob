@@ -9,7 +9,7 @@ using namespace std;
 class Artwork : public Object 
 {
 public:
-    Artwork();
+    Artwork() {}
     Artwork(crow::json::rvalue readValueJson);
     string getArtist();
     void setArtist(string newArtist){artist = newArtist;}
