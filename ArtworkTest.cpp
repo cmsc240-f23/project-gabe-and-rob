@@ -78,11 +78,4 @@ TEST_CASE("Testing Artwork class")
         CHECK(testArtwork.getDateCreated() == "10-12-13");
 
     }
-
-
-
-
-
-
-
 }

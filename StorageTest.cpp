@@ -30,8 +30,12 @@ map<std::string, Storage> storagesMap;
         vector<Artwork> artworkVector = {artwork};
         Gemstone gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         vector<Gemstone> gemstoneVector = {gemstone};
+        objectsMap["1"] = object1;
+        objectsMap["2"] = object2;
+        artworksMap["3"] = artwork;
+        gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
+        Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
 
         // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -50,8 +54,19 @@ map<std::string, Storage> storagesMap;
     // Testing convertToJson method
     TEST_CASE("Testing the convertToJson Method") 
     {
+        Object object1{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
+        Object object2{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
+        vector<Object> objectVector = {object1, object2};
+        Artwork artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
+        vector<Artwork> artworkVector = {artwork};
+        Gemstone gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
+        vector<Gemstone> gemstoneVector = {gemstone};
+        objectsMap["1"] = object1;
+        objectsMap["2"] = object2;
+        artworksMap["3"] = artwork;
+        gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage(json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})"));
+        Storage testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})"));
 
         // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -78,11 +93,15 @@ map<std::string, Storage> storagesMap;
         vector<Artwork> artworkVector = {artwork};
         Gemstone gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         vector<Gemstone> gemstoneVector = {gemstone};
+        objectsMap["1"] = object1;
+        objectsMap["2"] = object2;
+        artworksMap["3"] = artwork;
+        gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
+        Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
 
         // Create the update json.
-        json::rvalue updateJson = json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","storageName":"Jazz"}))");
+        json::rvalue updateJson = json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","storageName":"Jazz"}))");
 
         // Update the Storage with the updateFromJson method. 
         testStorage.updateFromJson(updateJson);
