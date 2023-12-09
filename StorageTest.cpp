@@ -35,8 +35,7 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = artwork;
         gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
-
+        Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
         // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
 
@@ -46,9 +45,14 @@ map<std::string, Storage> storagesMap;
         // Check that the constructor properly loaded the values.
         CHECK(testStorage.getSerialNum() == "Unsorted");
         CHECK(testStorage.getStorageName() == "Unsorted");
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
     }
 
     // Testing convertToJson method
@@ -66,7 +70,7 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = artwork;
         gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})"));
+        Storage testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})"));
 
         // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -75,9 +79,14 @@ map<std::string, Storage> storagesMap;
         json::rvalue jsonReadValue = json::load(jsonOutput.dump());
 
         // Check the values.
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
         CHECK(jsonReadValue["storageName"].s() == "Unsorted");
         CHECK(jsonReadValue["serialNum"].s() == "Unsorted");
     }
@@ -98,10 +107,10 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = artwork;
         gemstonesMap["4"] = gemstone;
         // Create a new Storage class from json.
-        Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
-
+        //Storage testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
+        Storage testStorage;
         // Create the update json.
-        json::rvalue updateJson = json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","storageName":"Jazz"}))");
+        json::rvalue updateJson = json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","storageName":"Jazz"})");
 
         // Update the Storage with the updateFromJson method. 
         testStorage.updateFromJson(updateJson);
@@ -115,7 +124,12 @@ map<std::string, Storage> storagesMap;
         // Check the updated values.
         CHECK(testStorage.getStorageName() == "Jazz");
         CHECK(testStorage.getSerialNum() == "Jazz");
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
     }

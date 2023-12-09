@@ -28,7 +28,7 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = Artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
         gemstonesMap["4"] = Gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         //Create a new Storage class from json.
-        Exhibit testStorage{json::load(R"({"storedGemstones":[{"serialNum":"5"}],"storedObjects":[{"serialNum":"3"}],"storedArtworks":[{"serialNum":"2"}],"exhibitName":"DummyExhibit","serialNum":"DummyExhibit"})")};
+        Exhibit testStorage{json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"exhibitName":"Unsorted","serialNum":"Unsorted"})")};
 
          // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -39,9 +39,14 @@ map<std::string, Storage> storagesMap;
         // Check that the constructor properly loaded the values.
         CHECK(testStorage.getSerialNum() == "Unsorted");
         CHECK(testStorage.getExhibitName() == "Unsorted");
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
     }
 
     // Testing convertToJson method
@@ -53,7 +58,7 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = Artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
         gemstonesMap["4"] = Gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         //Create a new Storage class from json.
-        Exhibit testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})"));
+        Exhibit testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})"));
 
         // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -62,10 +67,15 @@ map<std::string, Storage> storagesMap;
         json::rvalue jsonReadValue = json::load(jsonOutput.dump());
 
         // Check the values.
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
-        CHECK(jsonReadValue["storageName"].s() == "Unsorted");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
+        CHECK(jsonReadValue["exhibitName"].s() == "Unsorted");
         CHECK(jsonReadValue["serialNum"].s() == "Unsorted");
     }
 
@@ -78,10 +88,10 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = Artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
         gemstonesMap["4"] = Gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         //Create a new Storage class from json.
-        Exhibit testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})"));
+        Exhibit testStorage(json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})"));
 
         // Create the update json.
-        json::rvalue updateJson = json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","exhibitName":"Jazz"}))");
+        json::rvalue updateJson = json::load(R"({"storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Jazz","exhibitName":"Jazz"})");
 
         // Update the Storage with the updateFromJson method. 
         testStorage.updateFromJson(updateJson);
@@ -91,10 +101,17 @@ map<std::string, Storage> storagesMap;
 
         // Convert back to a json read value for testing.
         json::rvalue jsonReadValue = json::load(jsonOutput.dump());
+
+
         // Check the updated values.
         CHECK(testStorage.getExhibitName() == "Jazz");
         CHECK(testStorage.getSerialNum() == "Jazz");
-        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
-        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
-        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
+        crow::json::rvalue objectReadValueJson = jsonReadValue["storedObjects"][0];
+        CHECK(objectReadValueJson["serialNum"].s() == "1");
+        crow::json::rvalue objectReadValueJson2 = jsonReadValue["storedObjects"][1];
+        CHECK(objectReadValueJson2["serialNum"].s() == "2");
+        crow::json::rvalue artworkReadValueJson = jsonReadValue["storedArtworks"][0];
+        CHECK(artworkReadValueJson["serialNum"].s() == "3");
+        crow::json::rvalue gemstoneReadValueJson = jsonReadValue["storedGemstones"][0];
+        CHECK(gemstoneReadValueJson["serialNum"].s() == "4");
     }

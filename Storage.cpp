@@ -55,14 +55,16 @@ bool Storage::updateFromJson(json::rvalue readValueJson)
 {
     serialNum = readValueJson["serialNum"].s();
     storageName = readValueJson["storageName"].s();
-
+    cout << "Set Basic Storage" << endl;
     // Setting Objects
     for (json::rvalue storedObjectReadValueJson: readValueJson["storedObjects"])
     {
+        cout << "Set Basic Storage" << endl;
         storedObjects.push_back(objectsMap.at(storedObjectReadValueJson["serialNum"].s()));
     }
     for (json::rvalue storedArtworksReadValueJson: readValueJson["storedArtworks"])
     {
+        cout << "Set Basic Storage" << endl;
         storedArtworks.push_back(artworksMap.at(storedArtworksReadValueJson["serialNum"].s()));
     }
     for (json::rvalue storedGemstonesReadValueJson: readValueJson["storedGemstones"])
