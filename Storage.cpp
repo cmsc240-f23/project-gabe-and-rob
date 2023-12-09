@@ -13,12 +13,12 @@ extern map<std::string, Artwork> artworksMap;
 extern map<std::string, Gemstone> gemstonesMap;
 extern map<std::string, Storage> storagesMap;
 
-Storage::Storage() {}
-
 Storage::Storage(json::rvalue readValueJson)  
 {
     updateFromJson(readValueJson);
 }
+
+Storage::Storage(){}
 
 // Convert to JSON
 json::wvalue Storage::convertToJson() 

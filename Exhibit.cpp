@@ -12,7 +12,7 @@ extern map<std::string, Artwork> artworksMap;
 extern map<std::string, Gemstone> gemstonesMap;
 extern map<std::string, Exhibit> exhibitsMap;
 
-Exhibit::Exhibit(){}
+Exhibit::Exhibit() {}
 
 Exhibit::Exhibit(crow::json::rvalue readValueJson)
 {
