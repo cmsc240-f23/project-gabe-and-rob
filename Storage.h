@@ -13,7 +13,7 @@ using namespace std;
 class Storage
 {
 public:
-    Storage() {}
+    Storage();
     Storage(crow::json::rvalue readValueJson);
 
     string getStorageName() const {return storageName; }
