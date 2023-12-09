@@ -20,10 +20,10 @@ crow::json::wvalue Gemstone::convertToJson()
 
 bool Gemstone::updateFromJson(crow::json::rvalue readValueJson)
 {
+    type = readValueJson["type"].s();
+    dimensions = readValueJson["dimensions"].s();
     if(Object::updateFromJson(readValueJson))
     {
-        type = readValueJson["type"].s();
-        dimensions = readValueJson["dimensions"].s();
         return true;
     }
     else

@@ -27,7 +27,7 @@ TEST_CASE("Testing Gemstone class")
         Gemstone testGemstone(json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})"));
 
         //Check that the constructor properly loaded the values
-        CHECK(testGemstone.getType() == "Dumbrock");
+        CHECK(testGemstone.getType() == "DumbRock");
         CHECK(testGemstone.getDimensions() == "big");
        
     }
@@ -46,7 +46,7 @@ TEST_CASE("Testing Gemstone class")
         json::rvalue jsonReadValue = json::load(jsonOutput.dump());
 
         // Check the values.
-        CHECK(jsonReadValue["type"].s() == "Dumbrock");
+        CHECK(jsonReadValue["type"].s() == "DumbRock");
         CHECK(jsonReadValue["dimensions"].s() == "big");
 
     }
@@ -69,22 +69,5 @@ TEST_CASE("Testing Gemstone class")
         CHECK(testGemstone.getDimensions() == "medium");
 
     }
-
-
-    // SUBCASE("Checking errors")
-    // {
-    //     //Testing an ivalid json Gemstone without location
-        
-
-    //     response res = response(400, "Invalid JSON");
-
-    //     CHECK(Gemstone testGemstone(json::load(R"({"dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")) ==  res);
-
-
-    // }
-
-
-
-
 
 }

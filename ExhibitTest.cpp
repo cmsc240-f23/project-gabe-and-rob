@@ -28,7 +28,7 @@ map<std::string, Storage> storagesMap;
         artworksMap["3"] = Artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
         gemstonesMap["4"] = Gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         //Create a new Storage class from json.
-        Exhibit testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})")};
+        Exhibit testStorage{json::load(R"({"storedGemstones":[{"serialNum":"5"}],"storedObjects":[{"serialNum":"3"}],"storedArtworks":[{"serialNum":"2"}],"exhibitName":"DummyExhibit","serialNum":"DummyExhibit"})")};
 
          // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();

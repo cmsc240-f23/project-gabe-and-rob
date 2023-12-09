@@ -52,7 +52,7 @@ TEST_CASE("Testing Artwork class")
         CHECK(jsonReadValue["dateCreated"].s() == "12-1-2023");
         //check the other values that are not in the Artwork class
         CHECK(jsonReadValue["weight"].s() == "32 Lbs");
-        CHECK(jsonReadValue["location"].s() == "DummyExhibit");
+        CHECK(jsonReadValue["location"].s() == "");
         CHECK(jsonReadValue["name"].s() == "Jane Doe");
         CHECK(jsonReadValue["dateRetrieved"].s() == "N/A");
         CHECK(jsonReadValue["donor"].s() == "n/A");

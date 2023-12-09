@@ -22,11 +22,11 @@ crow::json::wvalue Artwork::convertToJson()
 
 bool Artwork::updateFromJson(json::rvalue readValueJson)
 {
+    artist = readValueJson["artist"].s();
+    typeOfWork = readValueJson["typeOfWork"].s();
+    dateCreated = readValueJson["dateCreated"].s();
     if(Object::updateFromJson(readValueJson))
     {
-        artist = readValueJson["artist"].s();
-        typeOfWork = readValueJson["typeOfWork"].s();
-        dateCreated = readValueJson["dateCreated"].s();
         return true;
     }
     else
@@ -36,10 +36,10 @@ bool Artwork::updateFromJson(json::rvalue readValueJson)
 }
 
 
-string Artwork::getArtist()
-{
-    return artist;
-}
+// string Artwork::getArtist()
+// {
+//     return artist;
+// }
 
 string Artwork::getTypeOfArtwork()
 {
