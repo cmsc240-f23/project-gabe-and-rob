@@ -32,7 +32,7 @@ TEST_CASE("Test Object Class")
         CHECK(testObject.getWeight() == "32 Lbs");
         CHECK(testObject.getDonor() == "n/A");
         CHECK(testObject.getSerialNum() == "1");
-        CHECK(testObject.getLocation() == "Unsorted");
+        CHECK(testObject.getLocation() == "");
         CHECK(testObject.getName() == "Jane Doe");
     }
 
@@ -53,7 +53,7 @@ TEST_CASE("Test Object Class")
         CHECK(jsonReadValue["weight"].s() == "32 Lbs");
         CHECK(jsonReadValue["donor"].s() == "n/A");
         CHECK(jsonReadValue["serialNum"].s() == "1");
-        CHECK(jsonReadValue["location"].s() == "Unsorted");
+        CHECK(jsonReadValue["location"].s() == "");
         CHECK(jsonReadValue["name"].s() == "Jane Doe");
     }
     //Testing updateFromJson method
@@ -70,7 +70,7 @@ TEST_CASE("Test Object Class")
 
         //Check the updated values
         CHECK(testObject.getName() == "DummyObject");
-        CHECK(testObject.getLocation() == "Unsorted");
+        CHECK(testObject.getLocation() == "");
         CHECK(testObject.getSerialNum() == "2");
         CHECK(testObject.getDonor() == "n/A");
         CHECK(testObject.getWeight() == "32 Lbs");
