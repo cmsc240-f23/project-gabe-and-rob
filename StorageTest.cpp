@@ -29,12 +29,18 @@ TEST_CASE("Testing Storage Class")
         // Create a new Storage class from json.
         Storage testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})")};
 
+        // Convert the Storage class to json using the convertToJson method.
+        json::wvalue jsonOutput = testStorage.convertToJson();
+
+        // Convert back to a json read value for testing.
+        json::rvalue jsonReadValue = json::load(jsonOutput.dump());
+
         // Check that the constructor properly loaded the values.
         CHECK(testStorage.getSerialNum() == "Unsorted");
         CHECK(testStorage.getStorageName() == "Unsorted");
-        CHECK(testStorage.getStoredObjects() == objectVector);
-        CHECK(testStorage.getStoredArtworks() == artworkVector);
-        CHECK(testStorage.getStoredGemstones() == gemstoneVector);
+        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
+        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
+        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
     }
 
     // Testing convertToJson method
@@ -77,11 +83,17 @@ TEST_CASE("Testing Storage Class")
         // Update the Storage with the updateFromJson method. 
         testStorage.updateFromJson(updateJson);
 
+        // Convert the Storage class to json using the convertToJson method.
+        json::wvalue jsonOutput = testStorage.convertToJson();
+
+        // Convert back to a json read value for testing.
+        json::rvalue jsonReadValue = json::load(jsonOutput.dump());
+
         // Check the updated values.
         CHECK(testStorage.getStorageName() == "Jazz");
         CHECK(testStorage.getSerialNum() == "Jazz");
-        CHECK(testStorage.getStoredObjects() == objectVector);
-        CHECK(testStorage.getStoredArtworks() == artworkVector);
-        CHECK(testStorage.getStoredGemstones() == gemstoneVector);
+        CHECK(jsonReadValue["storedGemstones"].s() == "[{serialNum:4}]");
+        CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
+        CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
     }
 }

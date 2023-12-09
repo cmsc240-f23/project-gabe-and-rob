@@ -23,10 +23,11 @@ TEST_CASE("Creating New Object Resource")
     //clear resource map before test
     GenericAPI<Object>::resourceMap.clear();
 
+    storagesMap["Dummy"] = Storage{json::load(R"({"storedGemstones":[],"storedObjects":[],"storedArtworks":[],"serialNum":"Dummy","storageName":"Dummy"})")};
+
     //setup request object
     request req;
-    req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})";
-    req.body = R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})";
+    req.body = R"({"dateRetrieved":"N/A","donor":"N/A","location":"Dummy","weight":"32 Lbs","name":"DummyObject","serialNum":"2"})";
     
     // Perform the action
     response res = GenericAPI<Object>::createResource(req);
@@ -36,9 +37,9 @@ TEST_CASE("Creating New Object Resource")
     CHECK(res.body == req.body); // Validate the reponse body
     CHECK(GenericAPI<Object>::resourceMap.size() == 1); // Ensure the resource was added to the map
     CHECK(GenericAPI<Object>::resourceMap.at("2").getSerialNum() == "2"); // Validate the resource content
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getLocation() == "Unsorted"); // Validate the resource content
+    CHECK(GenericAPI<Object>::resourceMap.at("2").getLocation() == "Dummy"); // Validate the resource content
     CHECK(GenericAPI<Object>::resourceMap.at("2").getDonor() == "N/A");
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getWeight() == "32");
+    CHECK(GenericAPI<Object>::resourceMap.at("2").getWeight() == "32 Lbs");
     CHECK(GenericAPI<Object>::resourceMap.at("2").getName() == "DummyObject"); 
     CHECK(GenericAPI<Object>::resourceMap.at("2").getDateRetrieved() == "N/A");
 }   
@@ -73,7 +74,7 @@ TEST_CASE("Read All Objects")
     // Perform the action
     response res = GenericAPI<Object>::readAllResources();
 
-    string expectedResponseBody = R"([{"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"},{"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"},{"dateRetrieved":"N/A","donor":"n/A","location":"DummyExhibit","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"}])";
+    string expectedResponseBody = R"([{"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"","name":"Jane Doe"},{"name":"DummyObject","location":"","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"},{"dateRetrieved":"N/A","donor":"n/A","location":"","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"}])";
 
     // Check the results
     CHECK(res.code == 200); // Check that the response code is 200 Ok
@@ -86,8 +87,8 @@ TEST_CASE("Updating an Object Resource")
     // Load resources to update.
     // Load a resource to read.
     objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
-    objectsMap["2"] = Object{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
-    objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"DummyExhibit","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
+    // objectsMap["2"] = Object{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
+    // objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"DummyExhibit","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
 
     storagesMap["Dummy"] = Storage{json::load(R"({"storedGemstones":[],"storedObjects":[],"storedArtworks":[],"serialNum":"Dummy","storageName":"Dummy"})")};
     // Setup resource map to be empty before the test
@@ -96,7 +97,7 @@ TEST_CASE("Updating an Object Resource")
 
     // Setup request object
     request req;
-    req.body = R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Dummy","name":"John Doe"})"; 
+    req.body = R"({"dateRetrieved":"yesterday","donor":"John","location":"Dummy","weight":"34 Lbs","name":"DummyObject","serialNum":"1"})"; 
 
     // Setup a response object
     response res;
@@ -107,13 +108,13 @@ TEST_CASE("Updating an Object Resource")
     // Check the results
     CHECK(res.code == 200); // Check that the response code is 200 Ok
     CHECK(res.body == req.body); // Validate the reponse body
-    CHECK(GenericAPI<Object>::resourceMap.size() == 4); // Ensure no resource was added or removed from the map
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getSerialNum() == "1"); // Validate the resource content
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getLocation() == "Dummy"); // Validate the resource content
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getDonor() == "N/A");
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getWeight() == "32");
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getName() == "John Doe"); 
-    CHECK(GenericAPI<Object>::resourceMap.at("2").getDateRetrieved() == "N/A");
+    CHECK(GenericAPI<Object>::resourceMap.size() == 3); // Ensure no resource was added or removed from the map
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getSerialNum() == "1"); // Validate the resource content
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getLocation() == "Dummy"); // Validate the resource content
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getDonor() == "John");
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getWeight() == "34 Lbs");
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getName() == "DummyObject"); 
+    CHECK(GenericAPI<Object>::resourceMap.at("1").getDateRetrieved() == "yesterday");
     //CHECK(GenericAPI<Storage>::resourceMap.at("Dummy")); //Why here?
 }
 

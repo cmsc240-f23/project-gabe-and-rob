@@ -33,8 +33,8 @@ persistenceTest: persistenceTest.cpp persistence.h Object.o
 ObjectTest: ObjectTest.cpp Object.cpp Object.h Object.o
 	g++ -lpthread ObjectTest.cpp Object.o -o ObjectTest
 
-ExhibitTest: ExhibitTest.cpp Exhibit.cpp Exhibit.h Artwork.h Gemstone.h Object.h Exhibit.o
-	g++ -lpthread ExhibitTest.cpp Exhibit.o -o ExhibitTest
+ExhibitTest: ExhibitTest.cpp Artwork.h Gemstone.h Object.h Exhibit.h Exhibit.o
+	g++ -lpthread ExhibitTest.cpp Artwork.h Gemstone.h Object.h Exhibit.h Exhibit.o -o ExhibitTest
 
 StorageTest: StorageTest.cpp Storage.cpp Storage.h Artwork.h Gemstone.h Object.h Storage.o
 	g++ -lpthread StorageTest.cpp Storage.o -o StorageTest
@@ -45,7 +45,7 @@ GemstoneTest: GemstoneTest.cpp Gemstone.cpp Gemstone.h Gemstone.o
 ArtworkTest: ArtworkTest.cpp Artwork.cpp Artwork.h Artwork.o
 	g++ -lpthread ArtworkTest.cpp Artwork.o -o ArtworkTest
 
-run-unit-tests: GenericAPITest persistenceTest ObjectTest ExhibitTest StorageTest GemstoneTest ArtworkTest
+run-unit-tests: GenericAPITest ExhibitTest StorageTest ObjectTest GemstoneTest ArtworkTest persistenceTest
 	./GenericAPITest    ;\
 	./persistenceTest	;\
 	./ObjectTest		;\
