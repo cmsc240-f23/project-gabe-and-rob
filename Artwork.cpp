@@ -5,6 +5,8 @@
 using namespace std;
 using namespace crow;
 
+Artwork::Artwork() {}
+
 Artwork::Artwork(crow::json::rvalue readValueJson)
 {
     updateFromJson(readValueJson);
