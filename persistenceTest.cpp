@@ -1,19 +1,22 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <crow.h>
 #include <doctest.h>
-#include "Object.h"
-#include "Storage.h"
+#include "persistence.h"
+#include "GenericAPI.h"
 #include "Exhibit.h"
+#include "Storage.h"
+#include "Object.h"
 #include "Gemstone.h"
 #include "Artwork.h"
-#include "GenericAPI.h"
-#include "persistence.h"
 
-using namespace std;
+using namespace std;  
 using namespace crow;
 
-extern map<std::string, Storage> storagesMap;
-extern map<std::string, Exhibit> exhibitsMap;
+map<std::string, Object> objectsMap;
+map<std::string, Gemstone> gemstonesMap;
+map<std::string, Artwork> artworksMap;
+map<std::string, Exhibit> exhibitsMap;
+map<std::string, Storage> storagesMap;
 
 TEST_CASE("Saving to a file and loading from a file.") 
 {

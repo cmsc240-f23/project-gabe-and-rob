@@ -27,8 +27,8 @@ GenericAPI.o: GenericAPI.cpp GenericAPI.h Storage.h Object.h Artwork.h Gemstone.
 GenericAPITest: GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o Object.o Storage.o
 	g++ -lpthread GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o Object.o Storage.o -o GenericAPITest
 
-persistenceTest: persistenceTest.cpp persistence.h Object.o
-	g++ -lpthread persistenceTest.cpp Object.o -o persistenceTest
+persistenceTest: persistenceTest.cpp persistence.h GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
+	g++ -lpthread persistenceTest.cpp persistence.h Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o persistenceTest
 
 ObjectTest: ObjectTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
 	g++ -lpthread ObjectTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o ObjectTest
