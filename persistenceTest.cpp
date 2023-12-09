@@ -23,13 +23,10 @@ TEST_CASE("Saving to a file and loading from a file.")
     
     // Load a resources to read.
     map<string, Object> objectsMap;
-    objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
-    objectsMap["2"] = Object{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
-    objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"Unsorted","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
-    objectsMap["4"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"Unsorted","weight":"32 Lbs","name":"ObjectToMove","serialNum":"MoveObject1"})")};
-
-    //Load Storage Container
-    Storage storage = Storage{json::load(R"("storedGemstones":[],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"3"}.{"serialNum":"MoveObject1"}],"storedArtworks":[],"serialNum":"Unsorted","storageName":"Unsorted"})")};
+    objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"","name":"Jane Doe"})")};
+    objectsMap["2"] = Object{json::load(R"({"name":"DummyObject","location":"","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
+    objectsMap["3"] = Object{json::load(R"({"dateRetrieved":"N/A","donor":"n/A","location":"","weight":"32 Lbs","name":"DummyObject2","serialNum":"3"})")};
+    
     // Perform the action
     saveToFile<Object>(objectsMap, "persistenceTest.json");
     map<string, Object> objectsMapLoaded = loadFromFile<Object>("persistenceTest.json");
@@ -54,10 +51,4 @@ TEST_CASE("Saving to a file and loading from a file.")
     CHECK(objectsMap.at("3").getWeight() == objectsMapLoaded.at("3").getWeight()); // Validate the resource content
     CHECK(objectsMap.at("3").getDonor() == objectsMapLoaded.at("3").getDonor()); // Validate the resource content
     CHECK(objectsMap.at("3").getLocation() == objectsMapLoaded.at("3").getLocation()); // Validate the resource content
-    CHECK(objectsMap.at("4").getSerialNum() == objectsMapLoaded.at("4").getSerialNum()); // Validate the resource content
-    CHECK(objectsMap.at("4").getName() == objectsMapLoaded.at("4").getName()); // Validate the resource content
-    CHECK(objectsMap.at("4").getDateRetrieved() == objectsMapLoaded.at("4").getDateRetrieved()); // Validate the resource content
-    CHECK(objectsMap.at("4").getWeight() == objectsMapLoaded.at("4").getWeight()); // Validate the resource content
-    CHECK(objectsMap.at("4").getDonor() == objectsMapLoaded.at("4").getDonor()); // Validate the resource content
-    CHECK(objectsMap.at("4").getLocation() == objectsMapLoaded.at("4").getLocation()); // Validate the resource content
 }

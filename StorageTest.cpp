@@ -19,12 +19,10 @@ map<std::string, Artwork> artworksMap;
 map<std::string, Exhibit> exhibitsMap;
 map<std::string, Storage> storagesMap;
 
-TEST_CASE("Testing Storage Class") 
-{
     // Testing Storage constructor
-    SUBCASE("Testing the Storage Constructor") 
+    TEST_CASE("Testing the Storage Constructor") 
     {
-        //Create objects for storage
+        // //Create objects for storage
         Object object1{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
         Object object2{json::load(R"({"name":"DummyObject","location":"Unsorted","serialNum":"2","donor":"n/A","weight":"32 Lbs","dateRetrieved":"N/A"})")};
         vector<Object> objectVector = {object1, object2};
@@ -50,7 +48,7 @@ TEST_CASE("Testing Storage Class")
     }
 
     // Testing convertToJson method
-    SUBCASE("Testing the convertToJson Method") 
+    TEST_CASE("Testing the convertToJson Method") 
     {
         // Create a new Storage class from json.
         Storage testStorage(json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","storageName":"Unsorted"})"));
@@ -70,7 +68,7 @@ TEST_CASE("Testing Storage Class")
     }
 
     // Testing updateFromJson method
-    SUBCASE("Testing updateFromJson Method") 
+    TEST_CASE("Testing updateFromJson Method") 
     {
         //Create objects for storage
         Object object1{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
@@ -102,4 +100,3 @@ TEST_CASE("Testing Storage Class")
         CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
         CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
     }
-}

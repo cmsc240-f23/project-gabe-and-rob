@@ -58,4 +58,4 @@ static-analysis:
 	cppcheck *.cpp
 	
 clean:
-	rm -f *.o MuseumAPI
+	rm -f *.o MuseumAPI GenericAPITest persistenceTest ObjectTest ExhibitTest StorageTest GemstoneTest ArtworkTest
