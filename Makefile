@@ -30,20 +30,20 @@ GenericAPITest: GenericAPITest.cpp GenericAPI.o Exhibit.o Gemstone.o Artwork.o O
 persistenceTest: persistenceTest.cpp persistence.h Object.o
 	g++ -lpthread persistenceTest.cpp Object.o -o persistenceTest
 
-ObjectTest: ObjectTest.cpp Object.cpp Object.h Object.o Artwork.o Storage.o Exhibit.o
-	g++ -lpthread ObjectTest.cpp Object.o -o ObjectTest
+ObjectTest: ObjectTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
+	g++ -lpthread ObjectTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o ObjectTest
 
 ExhibitTest: ExhibitTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
 	g++ -lpthread ExhibitTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o ExhibitTest
 
-StorageTest: StorageTest.cpp Storage.cpp Storage.h Artwork.h Gemstone.h Object.h Storage.o
-	g++ -lpthread StorageTest.cpp Storage.o -o StorageTest
+StorageTest: StorageTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
+	g++ -lpthread StorageTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o StorageTest
 
-GemstoneTest: GemstoneTest.cpp Gemstone.cpp Gemstone.h Gemstone.o
-	g++ -lpthread GemstoneTest.cpp Gemstone.o -o GemstoneTest
+GemstoneTest: GemstoneTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
+	g++ -lpthread GemstoneTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o GemstoneTest
 
-ArtworkTest: ArtworkTest.cpp Artwork.cpp Artwork.h Artwork.o
-	g++ -lpthread ArtworkTest.cpp Artwork.o -o ArtworkTest
+ArtworkTest: ArtworkTest.cpp GenericAPI.cpp GenericAPI.h GenericAPI.o Artwork.cpp Artwork.h Artwork.o Gemstone.cpp Gemstone.h Gemstone.o Object.cpp Object.h Object.o Exhibit.cpp Exhibit.h Exhibit.o Storage.cpp Storage.h Storage.o
+	g++ -lpthread ArtworkTest.cpp Artwork.o Gemstone.o Exhibit.o Storage.o Object.o GenericAPI.o -o ArtworkTest
 
 run-unit-tests: GenericAPITest ExhibitTest ObjectTest StorageTest GemstoneTest ArtworkTest persistenceTest
 	./GenericAPITest    ;\

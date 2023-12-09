@@ -19,10 +19,8 @@ map<std::string, Artwork> artworksMap;
 map<std::string, Exhibit> exhibitsMap;
 map<std::string, Storage> storagesMap;
 
-TEST_CASE("Testing Exhibit Class") 
-{
     // Testing Storage constructor
-    SUBCASE("Testing the Exhibit Constructor") 
+    TEST_CASE("Testing the Exhibit Constructor") 
     {
         //Create objects for Exhibit
         objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
@@ -30,7 +28,7 @@ TEST_CASE("Testing Exhibit Class")
         artworksMap["3"] = Artwork{json::load(R"({"dateCreated":"10-12-13","typeOfWork":"Song","artist":"BlueManGroup","serialNum":"3","name":"John Doe","weight":"12 Lbs","location":"Unsorted","donor":"n/A","dateRetrieved":"N/A"})")};
         gemstonesMap["4"] = Gemstone{json::load(R"({"location":"Unsorted","dateRetrieved":"N/A","weight":"31 Lbs","name":"BigRock","donor":"n/A","serialNum":"4","type":"DumbRock","dimensions":"big"})")};
         //Create a new Storage class from json.
-        Exhibit testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"},{"serialNum":"MoveObject1"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})")};
+        Exhibit testStorage{json::load(R"({storedGemstones":[{"serialNum":"4"}],"storedObjects":[{"serialNum":"1"},{"serialNum":"2"}],"storedArtworks":[{"serialNum":"3"}],"serialNum":"Unsorted","exhibitName":"Unsorted"})")};
 
          // Convert the Storage class to json using the convertToJson method.
         json::wvalue jsonOutput = testStorage.convertToJson();
@@ -47,7 +45,7 @@ TEST_CASE("Testing Exhibit Class")
     }
 
     // Testing convertToJson method
-    SUBCASE("Testing the convertToJson Method") 
+    TEST_CASE("Testing the convertToJson Method") 
     {
         //Create objects for Exhibit
         objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
@@ -72,7 +70,7 @@ TEST_CASE("Testing Exhibit Class")
     }
 
     // Testing updateFromJson method
-    SUBCASE("Testing updateFromJson Method") 
+    TEST_CASE("Testing updateFromJson Method") 
     {
         //Create objects for Exhibit
         objectsMap["1"] = Object{json::load(R"({"dateRetrieved":"N/A","weight":"32 Lbs","donor":"n/A","serialNum":"1","location":"Unsorted","name":"Jane Doe"})")};
@@ -100,4 +98,3 @@ TEST_CASE("Testing Exhibit Class")
         CHECK(jsonReadValue["storedObjects"].s() == "[{serialNum:1},{serialNum:2}]");
         CHECK(jsonReadValue["storedArtworks"].s() == "[{serialNum:3}]");
     }
-}

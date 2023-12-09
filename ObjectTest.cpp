@@ -2,11 +2,21 @@
 #include <crow.h>
 #include <doctest.h>
 #include <string>
+#include "GenericAPI.h"
+#include "Exhibit.h"
+#include "Storage.h"
 #include "Object.h"
+#include "Gemstone.h"
+#include "Artwork.h"
 
 using namespace std;  
-using namespace crow;  
+using namespace crow;
 
+map<std::string, Object> objectsMap;
+map<std::string, Gemstone> gemstonesMap;
+map<std::string, Artwork> artworksMap;
+map<std::string, Exhibit> exhibitsMap;
+map<std::string, Storage> storagesMap;
 
 TEST_CASE("Test Object Class")
 {
