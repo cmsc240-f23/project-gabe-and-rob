@@ -35,13 +35,13 @@ json::wvalue Storage::convertToJson()
         index ++;
     }
     index = 0;
-    for (Object artwork : storedArtworks) 
+    for (Artwork artwork : storedArtworks) 
     {
         writeJson["storedArtworks"][index]["serialNum"] = artwork.getSerialNum();
         index ++;
     }
     index = 0;
-    for (Object gemstone : storedGemstones) 
+    for (Gemstone gemstone : storedGemstones) 
     {
         writeJson["storedGemstones"][index]["serialNum"] = gemstone.getSerialNum();
         index ++;
