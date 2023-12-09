@@ -75,6 +75,7 @@ string Exhibit::getExhibitName()
 }
 
 bool Exhibit::addToExhibit(string serialNum){
+    cout << "Add to Exhibit" << endl;
     if(objectsMap.find(serialNum) != objectsMap.end()){
         Object object = objectsMap.at(serialNum);
         bool funct_complete = this->addObject(object);
@@ -118,6 +119,7 @@ bool Exhibit::removeFromExhibit(string serialNum){
   
 bool Exhibit::addObject(Object& object)
 {
+    cout << "Add Function Exhibit" << endl;
     string serialNumber = object.getSerialNum();
     for (auto& storedObject : storedObjects)
     {
@@ -127,9 +129,12 @@ bool Exhibit::addObject(Object& object)
         } 
     }
     //add the object to the back
+    storedObjects.push_back(object);
+    cout << "added object" << endl;
     exhibitsMap[this->getSerialNum()] = *this;
     GenericAPI<Exhibit>::resourceMap = exhibitsMap;
     saveToFile<Exhibit>(GenericAPI<Exhibit>::resourceMap, "exhibits.json");
+    cout << "saved"<< endl;
     return true;
 }
 
@@ -141,7 +146,7 @@ bool Exhibit::removeObject(Object& object)
         Object storedObject = *it;
         if (storedObject.getSerialNum() == object.getSerialNum())
         {
-            storedObjects.erase(it++); // advance it while still valid, return previous and erase
+            storedObjects.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {
@@ -180,7 +185,7 @@ bool Exhibit::removeArtwork(Artwork& object)
         Artwork storedArtwork = *it;
         if (storedArtwork.getSerialNum() == object.getSerialNum())
         {
-            storedArtworks.erase(it++); // advance it while still valid, return previous and erase
+            storedArtworks.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {
@@ -221,7 +226,7 @@ bool Exhibit::removeGemstone(Gemstone& object)
         Gemstone storedGemstone = *it;
         if (storedGemstone.getSerialNum() == object.getSerialNum())
         {
-            storedGemstones.erase(it++); // advance it while still valid, return previous and erase
+            storedGemstones.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {

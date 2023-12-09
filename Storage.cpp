@@ -110,7 +110,9 @@ bool Storage::addToStorage(string serialNum){
 }
 
 bool Storage::removeFromStorage(string serialNum){
+    cout << "Remove from Storage" << endl;
     if(objectsMap.find(serialNum) != objectsMap.end()){
+        cout << "Found Remove Function Storage" << endl;
         Object object = objectsMap.at(serialNum);
         bool funct_complete = this->removeObject(object);
         return funct_complete;
@@ -152,13 +154,14 @@ bool Storage::addObject(Object& object)
 
 bool Storage::removeObject(Object& object)
 {
+    cout << "Called Storage Remove" << endl;
     vector<Object>::iterator it;
     for (it = storedObjects.begin(); it != storedObjects.end(); /* nothing here! */)
     {
         Object storedObject = *it;
         if (storedObject.getSerialNum() == object.getSerialNum())
         {
-            storedObjects.erase(it++); // advance it while still valid, return previous and erase
+            storedObjects.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {
@@ -197,7 +200,7 @@ bool Storage::removeArtwork(Artwork& object)
         Artwork storedArtwork = *it;
         if (storedArtwork.getSerialNum() == object.getSerialNum())
         {
-            storedArtworks.erase(it++); // advance it while still valid, return previous and erase
+            storedArtworks.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {
@@ -238,7 +241,7 @@ bool Storage::removeGemstone(Gemstone& object)
         Gemstone storedGemstone = *it;
         if (storedGemstone.getSerialNum() == object.getSerialNum())
         {
-            storedGemstones.erase(it++); // advance it while still valid, return previous and erase
+            storedGemstones.erase(it); // advance it while still valid, return previous and erase
         }
         else
             {

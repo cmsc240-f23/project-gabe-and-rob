@@ -57,8 +57,10 @@ bool Object::updateFromJson(crow::json::rvalue readValueJson)
         value = true;
     }
     else if((exhibitsMap.find(new_location) != exhibitsMap.end())){
+        cout << "Found New Exhibit" << endl;
         if((storagesMap.find(original_location) != storagesMap.end()))
         {
+            cout << "Old Storage" << endl;
             Storage old_storage = storagesMap.at(original_location);
             old_storage.removeFromStorage(serialNum);
         }
