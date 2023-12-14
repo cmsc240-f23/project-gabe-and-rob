@@ -1,0 +1,6 @@
+-15 Web service is non-functional
+
+./MuseumAPI 
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  cannot find key
+Aborted (core dumped)
